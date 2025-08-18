@@ -1,12 +1,8 @@
-Wheatley: # the key name (id) of the author, which is used in the front matter
-  name: "Wheatley" # the display name of the author
-  email: "hello@example.org" # the email address of the author
-  avatar: "https://minotar.net/helm/Wheatley/64.png" # the URL of the author's avatar image (takes precedence over the minecraft player avatar, a square image with no more than 64*64 is recommended)
-  mcplayerid: "Wheatley" # the Minecraft player ID of the author, if applicable (used for generating player avatars)
+grassblock: # the key name (id) of the author, which is used in the front matter
+  name: "草方块" # the display name of the author
+  email: "i@gb0.dev" # the email address of the author
+  avatar: "https://minotar.net/helm/Iamgrassblock/64.png" # the URL of the author's avatar image (takes precedence over the minecraft player avatar, a square image with no more than 64*64 is recommended)
+  mcplayerid: "Iamgrassblock" # the Minecraft player ID of the author, if applicable (used for generating player avatars)
   social: # the social media accounts of the author, if any (there is no reference for this yet except for the twitter handle)
-    twitter: "@wheatley"
-    fediverse: "@"
-
-Glados: # you can have more if you like
-  name: "Glados"
-  email: "contact@example.org"
+    twitter: "@Grass_Block_cn"
+    fediverse: "@me@gb0.dev"

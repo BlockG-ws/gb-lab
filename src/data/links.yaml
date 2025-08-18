@@ -1,7 +1,101 @@
-Link: # the name/title of the destination
-  link: https://www.youtube.com/watch?v=cqT0OKlEo9w # the link to the destination
-  avatar: https://example.org/avatar.png # set an avatar
-  description: We know each other for so long # the description
-Another Link:
-  link: https://google.com
-  description: Your heart's been aching, but you're too shy to say it
+Zuoye's Blog:
+  link: https://blog.zuoye.win/
+  avatar: https://static.zuoye.win/img/16f4b0a54666c5c4.webp
+  descr: "一大堆作业的博客"
+Huan's Log:
+  link: https://nekohuan.cyou/
+  avatar: https://img.rnmeow.com/avatars/webp/avatar_96x96.webp # 準備建新站
+  descr: "$ curl -i https://nekohuan.cyou"
+  #- name: Lapis Apple's Recycle Bin
+  #  link: https://laple.me/
+  #  avatar: https://s1.ax1x.com/2020/04/12/GqhDs0.png
+  #  descr: 一个回收站，里面住着Lapis Apple。
+辉辉狐的笔记:
+  link: https://note.ifoxhui.com
+  avatar: https://frame.ifoxhui.com/image/1706096850b2893c5013a47465.webp
+  descr: JUST RECORD MY LIFE AND STUDY NOTES
+Tim_Paik的项目博客:
+  link: https://gh.timpaik.top/
+  avatar: https://mapp.alicdn.com/1633244893074BvoBzYrEgzOwpbz.png
+  descr: 一些有的没的小项目 & Tim_Paik 的碎碎念
+Zhuym 的博客:
+  link: https://zhuym-blog.vercel.app
+  avatar: https://s1.ax1x.com/2022/03/06/bBDeJI.png
+  descr: Zhuym的个人博客
+JackieCat 的猫窝:
+  link: https://jackiecat.top
+  avatar: https://106.55.183.72/lsky/1/avatar.jpg
+  descr: 一只猫猫的猫窝
+  #- name: Maxel's Pages
+  #  link: https://blog.maxelbk.eu.org/
+  #  avatar: https://blog.maxelbk.eu.org/r/maxel.jpg
+  #  descr: Code & write what we want.
+  # In memory of Maxel Black.
+咕萌小站:
+  link: https://gmoe.cc/
+  avatar: https://gmoe.cc/img/gu.jpg
+  descr: "「世界に忘れられた」"
+捞人的小站:
+  link: https://zwh.moe/
+  avatar: https://fastly.jsdelivr.net/gh/wuhang2003/images@main/avatar.jpg
+  descr: 一起来玩吧~
+Hao_Tian:
+  link: https://haotian22.top
+  avatar: https://www.haotian22.top/img/head.jpg
+  descr: 生命不息，折腾不止ヾ(≧▽≦*)o
+Rain's Blog:
+  link: https://blog.im.ci
+  avatar: https://blog.im.ci/wp-content/uploads/2020/07/IMG_20191231_052259-scaled-e1596127234331.jpg
+  descr: Rain的随笔小记
+WeepingDogel's Blog:
+  link: https://weepingdogel.github.io/
+  avatar: https://weepingdogel.github.io/photo_2021-07-21_03-31-50.jpg
+  descr: 狗狗的博客
+GZTime:
+  link: https://blog.gzti.me/
+  avatar: https://cdn.gzti.me/avatar/GZTime_2021.png
+  descr: Walking on the Time Axis.
+"Vigorous Pro":
+  link: https://www.wevg.org
+  avatar: https://i.yecdn.com/images/2019/04/28/eb8f0d223a57a56b086fb8c940455aef.png
+  descr: "The world can always use more heroes."
+湛蓝的调色板:
+  link: https://blog.nekoq.top
+  avatar: "https://nekoq.eu.org/static/images/avatar.png"
+  descr: "浅渗湛蓝 纵使青涩 难掩绮丽"
+李皓奇:
+  link: https://liolok.com/zhs/
+  avatar: https://liolok.com/icons/launcher_maskable.png
+  descr: "岂有电报倾社稷，从来佞幸覆乾坤。"
+玖只的尾巴:
+  link: https://blog.yurzi.net
+  avatar: https://blog.yurzi.net/icon.webp
+  descr: "有毛绒绒的奇妙领域"
+"Kimiblock's Blog":
+  link: https://blog.kimiblock.top
+  avatar: https://blog.kimiblock.top/img/gcover.svg
+  descr: "Welcome to Kimiblock's Blog, a private space."
+"風雪城":
+  link: https://blog.chyk.ink
+  avatar: https://q1.qlogo.cn/g?b=qq&nk=3526514925&s=640
+  descr: "浩繁星空下的一场稚嫩的梦"
+"weearc":
+  link: https://blog.weearc.top
+  avatar: https://blog.weearc.top/image/face.ico
+  descr: "相离相惜莫相忘，且行且歌且珍惜"
+"viisaus":
+  link: https://www.viisaus.tech
+  avatar: https://www.viisaus.tech/image/header.jpg
+  descr: 静水深流，笃志前行♨️♨️♨️
+"Guanran928 的博客":
+  link: https://blog.ny4.dev
+  avatar: https://blog.ny4.dev/favicon.ico
+  descr: "Guanran928 的个人博客"
+"Restent's Notebook":
+  link: https://blog.gxres.net
+  avatar: "https://library.gxres.net/images/icons/avatar.webp"
+  descr: "静寂に問う 答えを求めて"
+乱话三千:
+  link: https://www.zanks.link/
+  avatar: https://avatars.githubusercontent.com/u/144093429?v=4
+  descr: 养了一只叫基金的可爱小猫,平时会写点技术向的东西,有点做饭的小爱好
