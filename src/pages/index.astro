@@ -7,8 +7,15 @@ try {
   const module = await import('../content/index.md');
   HomePageContent = module.Content;
 } catch (e) {
-  // File doesn't exist or couldn't be imported
-  console.log('Homepage content not found, using default content');
+    try {
+        // try with mdx
+        const module = await import('../content/index.mdx');
+        HomePageContent = module.Content;
+    } catch (e) {
+        // File doesn't exist or couldn't be imported
+        console.error(e);
+        console.log('Homepage content not found, using default content');
+    }
 }
 ---
 
