@@ -17,6 +17,7 @@
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/rss": "^4.0.1",
     "@astrojs/sitemap": "^3.3.1",
+    "@elog/cli": "0.15.0-beta.1",
     "@fontsource-variable/jetbrains-mono": "^5.2.5",
     "artalk": "^2.9.1",
     "astro": "^5.2.5",
