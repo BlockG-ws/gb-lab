@@ -43,6 +43,7 @@ jobs:
           . ~/.config/nvm/nvm.sh # this should fix the node command not found error &&
           export ASTRO_TELEMETRY_DISABLED=true
           cd ~/lab && git pull &&
+          ./scripts/restore-time-from-git.sh
           pnpm install &&
           pnpm build && echo "Trying to restart webserver..." && systemctl --user restart lab-webserver.service
           '
