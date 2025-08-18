@@ -1,0 +1,61 @@
+name: Deploy to Sever # 名字随意
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+  repository_dispatch:
+    types:
+      - deploy
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # 令 GitHub 在 git clone 和 git checkout 后「忘记」使用的 credentials。
+          # 如果之后需要以另外的身份（如你的 GitHub Bot）执行 git push 操作时（如部署到 GitHub Pages），必须设置为 false。
+          persist-credentials: false
+          submodules: true
+      - name: Set Timezone
+        run: |
+          export TZ='Asia/Shanghai'
+      # 这里是为了将站点部署到服务器
+      # 当然你也可以使用其他的部署方式，如部署到 Cloudflare Pages 等
+      - name: Install SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+        # https://stackoverflow.com/questions/34906302/add-public-key-to-known-hosts-file
+      - name: Install ssh config
+        run: |
+          echo "${{ secrets.SSH_CONFIG }}" >> ~/.ssh/config
+          chmod 600 ~/.ssh/config
+      - name: Deploy to Server
+        run: |
+          ssh lab-deployer '
+          . ~/.local/bin/proxy.sh &&
+          . ~/.config/nvm/nvm.sh # this should fix the node command not found error &&
+          cd ~/lab && git pull &&
+          pnpm install &&
+          pnpm build && echo "Trying to restart webserver..." && systemctl --user restart lab-webserver.service
+          '
+      - name: Notify
+        run: |
+          curl https://${{ secrets.NTFY_HOST }} \
+          -H "Authorization: Bearer ${{ secrets.NTFY_TOKEN }}" \
+          -d '{
+              "topic": "me",
+              "message": "快来查看吧",
+              "title": "实验室已成功部署",
+              "tags": ["bell"],
+              "priority": 4,
+              "click": "https://lab.gb0.dev",
+              "actions": [{ "action": "view", "label": "查看", "url": "https://lab.gb0.dev" }]
+          }'
+            

@@ -1,0 +1,71 @@
+name: Sync from Notion
+
+on:
+  # 允许手动push触发
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+  # 允许外部仓库事件触发
+  repository_dispatch:
+    types:
+      # api中的event_type就是这个
+      - deploy
+  # 每早8点、晚21点同步一次，防止遗忘
+  schedule:
+    - cron: 0 0 * * *
+    - cron: 0 13 * * *
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 拉取仓库
+        uses: actions/checkout@master
+        with:
+          token: ${{ secrets.ELOG_GITHUB_TOKEN }}
+
+      - name: 安装node环境
+        uses: actions/setup-node@master
+        with:
+          node-version: "22.x"
+
+      # 缓存 node_modules，缓存机制参见 GitHub 文档：https://help.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows
+      - name: 缓存 node_modules
+        uses: actions/cache@v4 # 使用 GitHub 官方的缓存 Action。
+        env:
+          cache-name: lab-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package.json') }}
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: |
+            - recursive: false
+              args: [--frozen-lockfile, --strict-peer-dependencies, --prod]
+
+      - name: 设置时区
+        run: |
+          export TZ='Asia/Shanghai'
+
+      - name: 拉取Notion的文章
+        env:
+          # Notion相关环境变量
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: |
+          # 对应package.json中的script.sync
+          pnpm run sync
+
+      - name: 推送到仓库
+        uses: EndBug/add-and-commit@v9
+        with:
+          cwd: .
+          default_author: github_actions
+          add: "['elog.cache.json', './src/content/posts']"
+          message: 'chore: sync Notion posts (pushed by GitHub Actions)'
+          fetch: true
+          push: true
