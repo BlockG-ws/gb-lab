@@ -1,12 +1,12 @@
 export const siteConfig = {
     // site meta info
-    title: '/var/log/mercury',
-    description: 'A blog about software development, technology, and life.',
-    homepageOgImage: '',
+    title: '/var/log/gblab',
+    description: '此处会不定时产生包含大量废话的日志文件',
+    homepageOgImage: '/img/blog-cover.png',
     defaultAuthor: {
-      id: 'd6e4661d', // (optional) an id in the authors.yaml, will override the setting below (if id exists)
-      name: 'GrassBlock1',
-      email: 'hi@mercury.info',
+        id: 'grassblock', // (optional) an id in the authors.yaml, will override the setting below (if id exists)
+        name: 'GrassBlock',
+        email: 'i@gb0.dev',
     },
     // features
     spa: false, // enable single page application mode, this will enable navigation (with fade transitions) without reloading the page, and enable client-side routing
@@ -22,7 +22,10 @@ export const siteConfig = {
         // the order of the items will be the same as the order in the array
         // format is { text: string, link: string, openInNewTab?: boolean (default: true) }
         { text: "RSS", link: "/rss.xml", openInNewTab: true },
-        { text: "GitHub", link: "https://github.com/GrassBlock1/mercury", openInNewTab: false },
+        { text: "Categories", link: "/categories", openInNewTab: false },
+        { text: "Tags", link: "/tags", openInNewTab: false },
+        { text: "Friends", link: "/friends", openInNewTab: false },
+        { text: "Donate", link: "/donate", openInNewTab: false },
     ],
     // search
     // This only works when noClientJavaScript is enabled
@@ -46,7 +49,7 @@ export const siteConfig = {
     comments: {
         type: 'artalk', // 'artalk','giscus','fediverse','email','hatsu','oom','twikoo','waline'
         artalk: {
-            instanceDomain: '', // the domain of your artalk instance
+            instanceDomain: 'artalk.gb0.dev', // the domain of your artalk instance
         },
         giscus: {
             // get these params from giscus.app
@@ -100,19 +103,19 @@ export const siteConfig = {
     },
     // footer
     // yes you can write html safely here
-    customFooter: '<i>I have no mouth, and I must SCREAM</i>',
+    customFooter: '<p>给岁月以文明，给时光以生命。</p> <br> <a href="https://icp.gov.moe/?keyword=20220007" target="_blank">萌ICP备20220007号</a>',
     // the preset of the powered by text
     // defaults to 'Powered by Mercury', see PoweredBy.astro for more details
     // choose from 'default', 'withastro', 'plain', 'plainwithastro', 'formula', 'iconsonly' and 'none', any other value will be treated as 'default'
-    poweredByPreset: '',
+    poweredByPreset: 'formula',
     // umami analytics
     // by enabling this, you can track the visitors of your site
     siteAnalytics: {
-        enabled: false, // enable analytics
+        enabled: true, // enable analytics
         type: 'umami', // 'umami', 'goatcounter'
         umami: {
-            instanceDomain: 'cloud.umami.is', // the domain of the umami instance, usually your-umami-instance.com (default: official cloud.umami.is)
-            websiteId: 'your-website-id', // the id of your website in umami, get it from your umami dashboard
+            instanceDomain: 'umami.grassblock.eu.org', // the domain of the umami instance, usually your-umami-instance.com (default: official cloud.umami.is)
+            websiteId: 'cd3f2502-70ea-411a-9e87-c96f0d46a788', // the id of your website in umami, get it from your umami dashboard
         },
         goatcounter: {
             // provide solutions for tracking visitors without Javascript
