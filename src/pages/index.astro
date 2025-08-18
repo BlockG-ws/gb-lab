@@ -4,12 +4,12 @@ import {siteConfig} from "../config";
 // Conditionally import content if file exists
 let HomePageContent;
 try {
-  const module = await import('../content/index.md');
+  const module = await import('../content/index.mdx');
   HomePageContent = module.Content;
 } catch (e) {
     try {
-        // try with mdx
-        const module = await import('../content/index.mdx');
+        // fallback with md
+        const module = await import('../content/index.md');
         HomePageContent = module.Content;
     } catch (e) {
         // File doesn't exist or couldn't be imported
