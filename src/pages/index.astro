@@ -7,15 +7,9 @@ try {
   const module = await import('../content/index.mdx');
   HomePageContent = module.Content;
 } catch (e) {
-    try {
-        // fallback with md
-        const module = await import('../content/index.md');
-        HomePageContent = module.Content;
-    } catch (e) {
-        // File doesn't exist or couldn't be imported
-        console.error(e);
-        console.log('Homepage content not found, using default content');
-    }
+    // File doesn't exist or couldn't be imported
+    console.error(e);
+    console.log('Homepage content not found, using default content');
 }
 ---
 
