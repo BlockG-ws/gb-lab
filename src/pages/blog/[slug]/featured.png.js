@@ -62,13 +62,15 @@ const fileCache = {
 };
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('posts');
+  const blogEntries = await getCollection('posts',({ data }) => {
+      return import.meta.env.PROD ? data.draft !== true : true;
+  });
   return blogEntries.map(post => ({
     params: { slug: post.slug }, props: { post },
   }));
 }
 
-// get the post has a external featured.* image files
+// get the post has an external featured.* image files
 async function getExternalImage(post) {
   // Check cache first
   if (externalImageCache.has(post.slug)) {
