@@ -8,7 +8,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sync:local": "elog sync -e .elog.env",
+    "sync": "elog sync"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.5.4",
