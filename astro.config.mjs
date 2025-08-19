@@ -15,6 +15,7 @@ import {remarkModifiedTime} from "./src/plugins/remark/modified-time.mjs";
 
 import node from '@astrojs/node';
 
+import expressiveCode from 'astro-expressive-code';
 export default defineConfig({
     site: 'https://lab.gb0.dev',
     base: '/',
@@ -29,10 +30,6 @@ export default defineConfig({
     },
 
     markdown: {
-        shikiConfig: {
-            theme: 'nord',
-            wrap: true
-        },
         remarkPlugins: [remarkMath, remarkWordCount, remarkModifiedTime],
         rehypePlugins: [rehypeKatex]
     },
@@ -47,7 +44,7 @@ export default defineConfig({
         defaultLocale: "en",
     },
 
-    integrations: [sitemap(), mdx(), partytown()],
+    integrations: [sitemap(), expressiveCode(), mdx(), partytown()],
 
     adapter: node({
       mode: 'standalone'

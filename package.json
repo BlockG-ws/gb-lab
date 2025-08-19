@@ -23,6 +23,7 @@
     "@fontsource-variable/jetbrains-mono": "^5.2.5",
     "artalk": "^2.9.1",
     "astro": "^5.2.5",
+    "astro-expressive-code": "^0.41.3",
     "echarts": "^6.0.0",
     "giscus": "^1.6.0",
     "ico-endec": "^0.1.6",
