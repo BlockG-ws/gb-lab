@@ -6,8 +6,8 @@ tags:
 - 'Dark Mode'
 categories: 
 - 'tech'
-cover: </img/2023/07/autodarrrk/cover.webp>
-top_img: </img/2023/07/autodarrrk/cover.webp>
+cover: ../../../assets/img/2023/07/autodarrrk/cover.webp
+top_img: </img/2023/07/autodarrrk/cover.webp
 description: '经过几天的摸索，我最终找到了让 GNOME 桌面环境下随时间自动切换全局可自定义的深色模式的方法，同时也让一部分应用服从系统设定。'
 slug: auto-darkmode-on-gnome
 

@@ -9,7 +9,6 @@ summary: 转回 Bitwarden，并试图通过折腾还原此前使用 1password �
 description: 出于对开源的喜爱与偏好，我把密码管理器换回了自建的 Bitwarden，再次折腾了一番。
 slug: migrate-to-bitwarden-again
 title: 再次迁移到 Bitwarden
-cover: 'https://prod-files-secure.s3.us-west-2.amazonaws.com/154c8cde-d9ed-4739-b2db-0407122f1c06/a03502fb-1ca5-4161-9be6-01d13cba435a/migrate-to-bitwarden-cover.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20241004%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20241004T100546Z&X-Amz-Expires=3600&X-Amz-Signature=6bfd8bd39fa189a983fcd6926378e90e1f9f40362b0fb1a03b2cfdd13556f87c&X-Amz-SignedHeaders=host&x-id=GetObject'
 date: '2024-09-30 21:59:00'
 updated: '2024-10-04 18:04:00'
 ---

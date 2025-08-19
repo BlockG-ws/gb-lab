@@ -12,7 +12,7 @@ keywords:
 - 日常
 description: 在此新年之际，想写的东西。
 top_img: <https://unsplash.com/photos/Rq7Zqt92efE/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjQzNTQzMjA5&force=true&w=1920>
-cover: <https://unsplash.com/photos/Rq7Zqt92efE/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjQzNTQzMjA5&force=true&w=1920>
+cover: https://unsplash.com/photos/Rq7Zqt92efE/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjQzNTQzMjA5&force=true&w=1920
 slug: happy-lunar-new-year
 
 ---

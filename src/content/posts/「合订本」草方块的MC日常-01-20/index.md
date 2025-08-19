@@ -7,8 +7,8 @@ tags:
 - 合订本
 - Minecraft
 categories: ['collection']
-cover: </mc_daily/cover.webp>
-top_img: </mc_daily/cover.webp>
+cover: ../../../assets/mc_daily/cover.webp
+top_img: </mc_daily/cover.webp
 description: '#草方块的MC日常 合订本来咯！'
 slug: mc-daily-01
 

@@ -8,8 +8,8 @@ tags:
 categories: 
   - Daily
 description: '来一场第一次说走就走的旅行~'
-top_img: </img/2023/07/IMG_20230706_125447.webp>
-cover: </img/2023/07/IMG_20230706_125447.webp>
+top_img: </img/2023/07/IMG_20230706_125447.webp
+cover: ../../../assets/img/2023/07/IMG_20230706_125447.webp
 slug: 2023-07-travelling
 ---
 

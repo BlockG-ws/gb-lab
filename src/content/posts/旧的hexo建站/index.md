@@ -3,7 +3,7 @@
 title: 利用 Termux × GitHub × Hexo 创建免费博客
 tags: []
 date: 2021-02-25 05:55:00
-cover: <https://hazyman.com/img/content/Hexo-Cover.png>
+cover: https://hazyman.com/img/content/Hexo-Cover.png
 slug: hexo-blogging-old
 description: 利用GitHub × Termux逐步帮你搭建一个hexo的免费博客（白嫖一个博客岂不妙哉
 ---

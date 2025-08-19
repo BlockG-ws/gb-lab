@@ -10,7 +10,7 @@ categories:
 keywords: Another Widget,At a glance,一目了然
 description: 又一个假装是Pixel的新方式？
 top_img: <https://gitraw.grassblock.workers.dev/tommasoberlose/another-widget/master/hero.png>
-cover: <https://gitraw.grassblock.workers.dev/tommasoberlose/another-widget/master/hero.png>
+cover: https://gitraw.grassblock.workers.dev/tommasoberlose/another-widget/master/hero.png
 slug: another-widget-v2
 ---
 

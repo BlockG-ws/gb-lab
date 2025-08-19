@@ -7,8 +7,6 @@ categories:
 - Daily
 description: '文艺复兴一下！顺便借着 Minecraft 怀念一下从前的日子。'
 slug: 1-20-be-survival
-cover: <https://obj.imgb.space/api/raw/?path=/prjs/mc_daily/cover.webp>
-top_img: <https://obj.imgb.space/api/raw/?path=/prjs/mc_daily/cover.webp>
 
 ---
 为了实现自己的 [帖子](https://o3o.ca/deck/@grassblock/111278941131706042) 的一个小的目标，在这里开篇帖子，记录一下我的Minecraft生存。

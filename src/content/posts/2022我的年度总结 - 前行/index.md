@@ -8,8 +8,8 @@ categories: ['Daily']
 keywords: ['2022','年终总结','年度报告','日常']
 description: “长路浩浩荡荡，万事尽可期待。”
 slug: 2022-move-forward
-top_img: </img/2022/conclusion/cover.webp>
-cover: </img/2022/conclusion/cover.webp>
+top_img: </img/2022/conclusion/cover.webp
+cover: ../../../assets/img/2022/conclusion/cover.webp
 aplayer: true
 ---
 

@@ -7,7 +7,7 @@ tags:
 - '今天开服务不用钱'
 categories: 
 - tech
-cover: </img/2023/08/uptime-kuma-cover.webp>
+cover: ../../../assets/img/2023/08/uptime-kuma-cover.webp
 slug: uptime-kuma
 description: ''
 ---
