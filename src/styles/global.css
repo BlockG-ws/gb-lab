@@ -222,6 +222,11 @@ div.content {
         margin-bottom: 1.5rem;
     }
 
+    span.draft-badge {
+        color: var(--secondary-text-color);
+        font-weight: 300;
+    }
+
     ul, ol, li {
         list-style-position: inside;
     }
