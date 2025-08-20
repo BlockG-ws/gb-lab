@@ -12,18 +12,19 @@ description: '经过几天的摸索，我最终找到了让 GNOME 桌面环境�
 slug: auto-darkmode-on-gnome
 
 ---
+import CallOut from '/src/components/shortcodes/Callout.astro'
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut type="tip">
 虽然标题是“在 GNOME 上实现可自定义主题的自动切换深色模式”，但是本文所述的方法也有可能可以用于其它桌面环境。（如对于特定应用的设置等等）
-{{< /alert >}}
-<br>
-{{< alert >}}
+</CallOut>
+
+<CallOut>
 本文所述的方法不为 GNOME 官方所支持，甚至可能会未来的版本中失效，所以请谨慎使用。
-{{< /alert >}}
-<br>
-{{< alert icon="fire" cardColor="#e63946" iconColor="#1d3557" textColor="#f1faee" >}}
+</CallOut>
+
+<CallOut type="danger">
 本文所述的方法需要对系统进行一定的修改，如果你不知道自己在做什么，请不要使用本文所述的方法。同时请做好对原有配置的备份，以防万一。
-{{< /alert >}}
+</CallOut>
 
 # 更新日志
 
@@ -69,11 +70,11 @@ Qt 则更不必想，由于主题系统独立于GTK，所以自定义主题，�
 在开始配置之前，我们需要提前准备一些东西：
 
 首先，我们需要安装一个叫做 [Night Theme Switcher](https://extensions.gnome.org/extension/2236/night-theme-switcher/) 的扩展，它可以让我们在指定的时间（或者是随日出日落）自动切换深浅色模式，而且可以自定义主题。
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut type="tip">
 不知道如何安装 GNOME Shell 扩展？请参考 [How to Use GNOME Shell Extensions](https://itsfoss.com/gnome-shell-extensions/#method-2-install-gnome-shell-extensions-from-a-web-browser)。
 
 （注：你可能需要根据自己所使用的发行版而调整步骤，如果觉得不靠谱这个东西网上搜一搜就有了）
-{{< /alert >}}
+</CallOut>
 
 然后，我们需要找两套主题，一套是浅色为主的，一套是深色为主的（或者是同一套主题的深浅色版本），我这里使用的是 [vimix-gtk-theme](https://www.gnome-look.org/p/1013698)（用于浅色模式下）和 [Nordic](https://www.gnome-look.org/p/1267246)（用于深色模式下）作为示例。
 
@@ -91,9 +92,9 @@ Qt 则更不必想，由于主题系统独立于GTK，所以自定义主题，�
 
 ## 配置
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut>
 比较喜欢默认的 Adwaita 样式？你可以直接跳转到 [对于Adwaita的设置](#对于adwaita的设置)。
-{{< /alert >}}
+</CallOut>
 
 ### Night Theme Switcher 配置
 
@@ -104,11 +105,11 @@ Qt 则更不必想，由于主题系统独立于GTK，所以自定义主题，�
 
 在默认打开的 `安排` 一栏，可以自由调整切换发生的时间，或者是关闭手动安排，使其随日出日落自动切换。
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut>
 如果想要在日出日落前后一段时间内切换，还需要允许扩展访问位置信息。否则扩展无法获取到日出日落的时间，并自动切换回手动安排。
 
 设置方法：打开`设置`应用，在 `隐私` 一栏中，找到 `位置信息`，并将`定位服务`的开关开启。
-{{< /alert >}}
+</CallOut>
 
 `背景` 一栏可以分别设置深色和浅色模式下的背景，这里不再赘述。
 
@@ -137,7 +138,7 @@ ln -s $HOME/.themes/vimix-light-doder/gtk-4.0/gtk.css $HOME/.config/gtk-4.0/gtk.
 
 你可以亲自执行一次这个脚本，再打开一个 GTK4 应用（比如设置）看看是否能够正常切换主题。（已经打开的应用需要重启才能看到效果）
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut type="tip">
 有些主题会把 `assets` 目录放到 gtk.css 所在的上一级目录，或者是其它位置，这个时候可能就需要对CSS文件做一点修改。
 
 使用你所喜爱的编辑器，打开主题当中的 gtk.css 文件，查找 `assets` ，如果找到的路径不是 `./assets` ，那么就需要修改脚本中的路径为其所对应的路径，而且还要将CSS文件中所有的 `assets` 对应的路径改为 `./assets`。
@@ -152,7 +153,7 @@ ln -s $HOME/.themes/Nordic-[variant]/gtk-4.0/gtk.css $HOME/.config/gtk-4.0/gtk.c
 ```
 
 并且 `gtk.css` 中所有的 `../assets` 都需要改为 `./assets`。
-{{< /alert >}}
+</CallOut>
 
 如果你觉得直接将上面的一串复制进扩展的输入框中不方便后续编辑，可以将其写入到一个shell文件中，然后在扩展中填写执行对应的文件的脚本。
 
@@ -170,15 +171,15 @@ Qt 的主题系统与 GTK 的主题系统是相互独立的，所以我们需要
 QT_STYLE_OVERRIDE=kvantum
 ```
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut type="tip">
 有关如何设置环境变量，请参考 [ArchWiki - Environment variables](https://wiki.archlinux.org/title/Environment_variables#Defining_variables)。
-{{< /alert >}}
+</CallOut>
 
 然后注销并重新登录（亦或重启，取决于你设置的环境变量范围），先打开 Kvantum Manager，选择一个你喜欢的主题，然后点击 `Apply` 按钮，再打开一个 Qt 应用，看看是否能够正常使用主题。
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut>
 不知道如何安装自己想要的 kvantum 主题？试试把主题包解压，然后在 Kvantum Manager 中点击 `Install Theme` 按钮，选择解压后的主题文件夹，再点击 `Apply` 按钮即可。
-{{< /alert >}}
+</CallOut>
 
 这样虽然可以让 Qt 应用使用 kvantum 主题，但是这种办法还需要打开 Kvantum Manager 才能切换主题，并不便于自动切换，这时我们就需要使用它的命令行参数了。
 
@@ -211,17 +212,17 @@ flatpak --user override --filesystem=~/.config/gtk-4.0
 flatpak --user override --filesystem=~/.themes
 ```
 
-{{< alert icon="fire" cardColor="#e63946" iconColor="#1d3557" textColor="#f1faee" >}}
+<CallOut type="danger">
 将系统中的目录开放给flatpak应用访问，可能会造成数据泄露，从而降低系统的安全性，所以请谨慎使用。
-{{< /alert >}}
+</CallOut>
 
 ## 对于Adwaita的设置
 
 考虑到很多人出于兼容性等等的原因可能会使用默认的 Adwaita 主题，所以这里也给出一些对于 Adwaita 主题的设置。
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut>
 此部分内容在Ubuntu 23.04上测试通过，其它发行版可能会略有差异。
-{{< /alert >}}
+</CallOut>
 
 Adwaita 作为默认主题，毫无疑问的是它的兼容性是最好的，它支持 GTK4，也支持 Qt。但是，对于Qt应用来说，它在默认情况下并不会跟随系统的深色模式，所以仍需要我们手动设置。
 
@@ -245,9 +246,9 @@ Adwaita 作为默认主题，毫无疑问的是它的兼容性是最好的，它
 
 当然，由于 Adwaita 是支持 Qt 的，如果你想要让大部分的 Qt 应用也要跟随系统主题，可以安装 `qgnomeplatform-qt5` 和 `qgnomeplatform-qt6` 这两个包，然后设置环境变量 `QT_QPA_PLATFORMTHEME=gnome` 即可，这样避免了额外配置 Kvantum 和写脚本的麻烦。
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut>
 有关如何设置环境变量，请参考 [ArchWiki - Environment variables](https://wiki.archlinux.org/title/Environment_variables#Defining_variables)。
-{{< /alert >}}
+</CallOut>
 
 ## 善后工作
 
@@ -291,9 +292,9 @@ OBS 默认使用的 Yami 主题在自定义Qt主题下的显示效果并不好�
 
 ### Telegram
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut>
 Telegram 各个设置在使用不同语言包下的显示差异较大，这里以英文为准。
-{{< /alert >}}
+</CallOut>
 
 Telegram 桌面端默认不跟随系统深色模式设置，但是在设置中可以进行调整。
 
@@ -319,11 +320,11 @@ Telegram 桌面端默认不跟随系统深色模式设置，但是在设置中�
 
 在插件 Marketplace 搜索并安装这个插件，重启IDE，在设置中找到 `Auto Dark Mode` 即可调整相关设置。
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut>
 对于 GNOME 42+ 用户，需要先行安装`xdg-desktop-portal-gnome`将插件设置中 `implement type` 设置为 `XDG-Desktop`，否则主题切换不起作用。同时，若其它选项不起作用（在深色模式下仍显示为浅色主题）时也可尝试此选项。
 
 有关 XDG-Desktop 如何向第三方应用提供相关信息，可以查看 [XDG Desktop Portal - ArchWiki](https://wiki.archlinux.org/title/XDG_Desktop_Portal)。
-{{< /alert >}}
+</CallOut>
 
 ### Fcitx5
 
@@ -380,19 +381,19 @@ echo "The value of setting_name has been changed to $new_value."
 顺便说一句，如果要使用这个脚本，我们还需要一个主题名作为参数，而主题名就是在 `~/.local/share/fcitx5/themes` 存放的文件夹名字。
 
 比如，我想要使用 `catppuccino-mocha` 这个深色调的主题，那么我就需要在扩展中的命令菜单的`日落`一栏填写 `sh ~/.local/bin/fcitx5-theme-switcher.sh catppuccino-mocha`。
-{{< alert >}}
+<CallOut>
 `Night Theme Switcher` 用户请注意：
 
 如果你在一个切换脚本中用到了这个脚本，请确保引用的路径是**绝对路径**，否则可能会出现找不到脚本文件的情况。
-{{< /alert >}}
+</CallOut>
 
 如果怕麻烦，我们可以直接使用 [Input Method Panel](https://extensions.gnome.org/extension/261/kimpanel/) 这个插件，它会让 KDE 的相关api兼容 GNOME，从而使其跟随 GNOME shell 的主题，不过缺点也在这儿，无法自定义主题（Fcitx5内相应选项也会失效，只能通过更换GNOME的主题来进行更换）。
 
 ### 其它较为通用的解决方案
 
-{{< alert >}}
+<CallOut>
 以下内容部分由AI所生成，并不保证可用性。
-{{< /alert >}}
+</CallOut>
 如果应用并不在以上列表中，可以尝试以下的解决方案：
 
 - 在应用的设置中查找是否有设置界面主题跟随系统的选项，如果有，就直接设置即可。（大概会在 `外观` 或者 `界面` 一类的设置中）

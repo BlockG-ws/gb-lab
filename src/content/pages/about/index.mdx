@@ -7,10 +7,14 @@ keywords: '关于'
 top_img: 'https://unsplash.com/photos/RxQ_WYkdRS4/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MzV8fGZveHxlbnwwfDB8fHwxNjg3MzUwODc3fDA&force=true&w=1920'
 comments: false
 ---
-{{< alert >}}
+import CallOut from '../../../components/shortcodes/Callout.astro'
+import TimeLine from '../../../components/shortcodes/timeline/TimeLine.astro';
+import TimeLineItem from '../../../components/shortcodes/timeline/TimeLineItem.astro';
+
+<CallOut type="warning">
 AIGC 注意：此页面部分使用了AI模型生成的内容，包括但不限于 `text-davinci-002-render-sha`（ChatGPT 所使用的模型之一） 、 `gpt-4` （New Bing 等所使用的模型）、`codex` （GitHub Copilot 所使用的模型），且都做出了明显指明，在引用、转载等操作前请注意。
 这些AI内容可能包含错误或不准确的地方。请不要为任何严肃或重要的目的依赖这段话。这段话不代表其创造者或任何附属实体的观点或意见。
-{{< /alert >}}
+</CallOut>
 
 关于为什么要给博客写一段介绍，New Bing （x GitHub Copilot）的回答如下：
 >给自己的博客写一段介绍有很多好处，比如：
@@ -40,49 +44,49 @@ AIGC 注意：此页面部分使用了AI模型生成的内容，包括但不限�
 
 # 博客历史
 （整理自 Telegram 上已废弃的公告板，等我哪天重建一下吧）
-{{< timeline >}}
-{{< timelineItem icon="location-dot" header="2021" subheader="06-09" >}}
+<TimeLine parseFromText={false}>
+<TimeLineItem title="2021" date="06-09" >
 GrassBlog 建立！作为一个测试性分部而存在，使用 Hexo 驱动
-{{< /timelineItem >}}
-{{< timelineItem icon="location-dot" header="2021" subheader="07-23" >}}
+</TimeLineItem>
+<TimeLineItem title="2021" date="07-23" >
 更名为 Mare_Infinitus ，名字随便取的，意为“无限极海”，[来源](https://hyperioncantos.fandom.com/wiki/Mare_Infinitus)
-{{< /timelineItem >}}
-{{< timelineItem icon="location-dot" header="2021" subheader="08-07" >}}
+</TimeLineItem>
+<TimeLineItem title="2021" date="08-07"> 
 在新仓库安全着陆！博客开始独立于“主站”存在，更新不稳定
-{{< /timelineItem >}}
-{{< timelineItem icon="location-dot" header="2021" subheader="10-16" >}}
+</TimeLineItem>
+<TimeLineItem title="2021" date="10-16"> 
 使用 `lab.imgb.space` 作为域名，原有的 `grassblog.vercel.app` 仍存留
-{{< /timelineItem >}}
-{{< timelineItem icon="location-dot" header="2021" subheader="11-12" >}}
+</TimeLineItem>
+<TimeLineItem title="2021" date="11-12"> 
 使用了新的网站图标
-{{< /timelineItem >}}
-{{< timelineItem icon="location-dot" header="2021" subheader="11-14" >}}
+</TimeLineItem>
+<TimeLineItem title="2021" date="11-14"> 
 正式迁移到 `lab.imgb.space`，原域名进行了308跳转处理
-{{< /timelineItem >}}
-{{< timelineItem icon="location-dot" header="2021" subheader="11-28" >}}
+</TimeLineItem>
+<TimeLineItem title="2021" date="11-28"> 
 数据迁移到新的评论系统，正式舍弃原有的 Waline
-{{< /timelineItem >}}
-{{< timelineItem icon="location-dot" header="2022" subheader="01-01" >}}
+</TimeLineItem>
+<TimeLineItem title="2022" date="01-01"> 
 申请了独立的萌备 [20220007号](https://icp.gov.moe/?keyword=20220007)，标志着正式独立
-{{< /timelineItem >}}
-{{< timelineItem icon="location-dot" header="2023" subheader="01-25" >}}
+</TimeLineItem>
+<TimeLineItem title="2023" date="01-25"> 
 新建镜像仓库，有效防止了意外发生
-{{< /timelineItem >}}
-{{< timelineItem icon="location-dot" header="2023" subheader="12-31" >}}
+</TimeLineItem>
+<TimeLineItem title="2023" date="12-31"> 
 缝缝补补又一年啊
-{{< /timelineItem >}}
-{{< timelineItem icon="heart" header="2024" subheader="02-13" >}}
+</TimeLineItem>
+<TimeLineItem title="2024" date="02-13"> 
 迁移到 Hugo，托管服务切换到 Cloudflare Pages，也算是一个新的开始。
 
 我们的故事仍将继续。
-{{< /timelineItem >}}
-{{< timelineItem icon="heart" header="2024" subheader="09-02" >}}
+</TimeLineItem>
+<TimeLineItem title="2024" date="09-02"> 
 网站更换了新的名字，灵感来源于 Linux 的文件系统，更加具有指向性。
-{{< /timelineItem >}}
-{{< timelineItem icon="heart" header="2024" subheader="09-20" >}}
+</TimeLineItem>
+<TimeLineItem title="2024" date="09-20">
 网站域名迁移到 lab.gb0.dev，又是一个新的开始，这次它将成为真正的实验室...
-{{< /timelineItem >}}
-{{< /timeline >}}
+</TimeLineItem>
+</TimeLine>
 
 # 关于我
 虽然看起来有点奇怪，但是我想在最后介绍一下我自己。

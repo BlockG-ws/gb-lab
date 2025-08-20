@@ -13,9 +13,11 @@ top_img: </img/2023/wine-office-exp.webp
 cover: ../../../assets/img/2023/wine-office-exp.webp
 
 ---
-{{< alert >}}
+import CallOut from '/src/components/shortcodes/Callout.astro'
+
+<CallOut>
 本文有一小部分内容由 [GitHub Copilot](https://copilot.github.com/) 生成，但是我已经尽力修改了它生成的内容，以使其更加符合实际。如果你发现了一些还是奇怪的地方，那么请不要怀疑，那就是 Copilot 的锅。
-{{< /alert >}}
+</CallOut>
 最近突发奇想，看看能不能在Linux上用 M$ Office，然后折腾了几天，也没弄好，但是也算是有了一些经验，所以就把这些经验写在这里，希望能帮到有需要的人。
 
 # 情况说明
@@ -50,11 +52,11 @@ export WINEARCH=win32
 
 (我这里测试时发现使用32位环境时成功启动安装程序概率更高，所以就一直用32位环境了）
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut>
 注意：这个环境变量在64位环境的wine启动后可能失效，所以需要在启动前提前设置，之后无需再设置。
-{{< /alert >}}
+</CallOut>
 
-{{< alert >}}
+<CallOut>
 如果你已经`wineboot`启动和配置了默认的PREFIX，建议在新的PREFIX下执行下面的操作，以免出现意外，执行以下指令来切换到新的prefix：
 
 ```bash
@@ -63,7 +65,7 @@ mkdir ~/.msoffice
 export WINEPREFIX=~/.msoffice 
 ```
 
-{{< /alert >}}
+</CallOut>
 
 建议在运行前使用 `winecfg` 调整兼容性到 Windows 8/8.1，以便于获得更好的兼容性，但是不是必须的，Windows 10兼容性也可正常运行一部分Office版本。
 
@@ -77,9 +79,9 @@ export WINEPREFIX=~/.msoffice
 
 当然，你也可以使用Office Tool Plus部署Office，但是我这里一直无法启动，所以不保证能成功。
 
-{{< alert icon="bell" cardColor="#9db4c0" iconColor="#303852" textColor="#324054" >}}
+<CallOut type="tip">
 对于 Office Tool Plus 用户，建议使用生成ISO的方式，或者直接把它所在的**整个**目录复制到便于访问的地方。
-{{< /alert >}}
+</CallOut>
 
 ### 安装一些 tricks
 
@@ -89,9 +91,9 @@ export WINEPREFIX=~/.msoffice
 winetricks cmd corefonts msxml6 riched20 gdiplus cjkfonts
 ```
 
-{{< alert icon="bell" cardColor="#9db4c0" iconColor="#303852" textColor="#324054" >}}
+<CallOut>
 对于自定义PREFIX的用户，需要在指令前加上`WINEPREFIX=~/.msoffice`，以便于wine能够找到PREFIX。
-{{< /alert >}}
+</CallOut>
 
 之后的版本，根据我的翻车经验，可能需要部分UWP组件。
 
@@ -107,9 +109,9 @@ wine：你是故意找茬是不是？
 wine /path/to/setup.exe
 ```
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut type="warning">
 对于自定义PREFIX的用户，需要在指令前加上`WINEPREFIX=~/.msoffice`，以便于wine能够找到PREFIX。
-{{< /alert >}}
+</CallOut>
 
 ## 注意事项
 
@@ -157,7 +159,7 @@ MS Office 365 安装在wine上运行报告：
 ~~在补了亿些组件后，无论如何我再也打不开安装程序了....~~
 
 Update：安装包打开后显示splash后无响应，报错日志：
-<https://gist.github.com/GrassBlock1/199e3dd24cb4ed3728e54955ff9b37d9>
+https://gist.github.com/GrassBlock1/199e3dd24cb4ed3728e54955ff9b37d9
 
 这次OTP倒是有一个空窗口加载，似乎是拉不了更新导致的，终端报错：
 

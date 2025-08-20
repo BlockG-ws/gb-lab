@@ -16,22 +16,23 @@ cover: ../../../assets/img/cf-hexo-cover.png
 slug: hexo-with-cfworkers
 
 ---
+import CallOut from '/src/components/shortcodes/Callout.astro'
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut>
 本文基于 Sukka's Blog 的 [《将 Hexo 部署到 Cloudflare Workers Site 上的趟坑记录》](https://blog.skk.moe/post/deploy-blog-to-cf-workers-site/) ，图片来源网络，如有侵权请联系。
 
 本文在其基础上做了一些更新，~~使之能够适应3202年的情况~~（
-{{< /alert >}}
+</CallOut>
 
 # 更新日志
 
 2021-08-08 18:35:56 ：初稿
 2023-09-04 18:34:53 ：基于有人看以及wrangler的更新废弃了大量旧的东西，更新了一下内容
-{{< alert icon="fire" cardColor="#e63946" iconColor="#1d3557" textColor="#f1faee" >}}
+<CallOut type="danger">
 最新版本的wrangler已不再支持通过此办法部署纯静态站点，参见[Deprecations · Cloudflare Workers docs](https://developers.cloudflare.com/workers/wrangler/deprecations/#init)。如有类似需求，请移步[Cloudflare Pages](https://pages.cloudflare.com/)。
 
 以下内容中部分已经失效，仅供参考。
-{{< /alert >}}
+</CallOut>
 
 Cloudflare Workers KV 的Pricing一变再变，现在终于开放免费使用辣！不过话说去年似乎KV仍需要5$/月的付费，#我火星了
 
@@ -115,7 +116,7 @@ route = 'domain.com/*'
 如不需要cf提供的 workers.dev 子域名，将 `workers_dev` 的值改为 `false` 即可。
 
 以下是一个完整的`wrangler.toml`示例供参考：
-{% hideToggle Toml示例 %}
+
 
 ```toml
 name = "grassblog"
@@ -131,14 +132,13 @@ site = {bucket = "./public"}
 ```
 
 部分涉及隐私的部分已经进行替换。
-{% endhideToggle %}
 
 配置保存后，运行 ` wrangler login ` ，然后按指引登录你的 Cloudflare 账户。
-{{< alert >}}
+<CallOut>
 如果你在一台拥有GUI和浏览器的机器上进行连接时，会自动打开一个浏览器窗口进行登录。
 
 如果你在一台没有GUI的机器（如SSH等）进行连接时，那么需要在本地打开这个链接。
-{{< /alert >}}
+</CallOut>
 
 ## 预览和发布
 
@@ -158,10 +158,10 @@ wrangler dev
 wrangler publish
 ```
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut>
 使用自定义子域名时，还需要为上述的route添加一条值为 `100::` 的 AAAA 记录。
 [参见：Cloudflare Workers Docs](https://developers.cloudflare.com/workers/platform/routes#subdomains-must-have-a-dns-record)
-{{< /alert >}}
+</CallOut>
 
 ## 使用 GitHub Actions
 

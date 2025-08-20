@@ -8,10 +8,11 @@ description: "【本文章使用Notion导出】参黑客原神，品折腾人生
 slug: hackergame-2023-hole
 top_img: <https://www.notion.so/images/page-cover/nasa_robert_stewart_spacewalk_2.jpg>
 ---
+import CallOut from '/src/components/shortcodes/Callout.astro'
 
-{{< alert icon="bell" cardColor="#9db4c0" iconColor="#303852" textColor="#324054" >}}
-本文章随附纯 HTML 版本（但是效果比较差）：[传送门](/archived/hg-2023-wp/hole.html)
-{{< /alert >}}
+<CallOut>
+（已失效）本文章随附纯 HTML 版本（但是效果比较差）：[传送门](/archived/hg-2023-wp/hole.html)
+</CallOut>
 激动人心的~~大佬竞赛~~——hackergame 2023已然落下帷幕。我相信大家已经看过亿些题解、writeup 这一类的东西了。但是作为一个可以算是不会任何ctf知识、第一次参加这类比赛的我来说，我还是有些该说的和可能不该说的想说的话想要写出来告诉大家。
 
 先提前说一下：我坚决不同意与我几乎同等ctf水平的小白去参加这类比赛的。但是如果你铁了心地说，我想试试，那么Just Do it！吐槽也仅限于我自己这一方面，不是真的说这个比赛不好…
@@ -49,11 +50,11 @@ hackergame 结束过后，于我而言，先来的不是官方的题解，而是
 
 下面是跟一个朋友复盘题的解法时，发现自己做题时踩的坑：
 
-{{< alert icon="circle-info" cardColor="#303952" iconColor="#fafafa" textColor="#f1faee" >}}
+<CallOut>
 🙇‍♂️ 特别感谢：wuhang2003 于比赛结束后和我~~交流病情~~讨论题目，以及他的writeup：[Hackergame 2023 启动日志 - 捞人的小站](https://zwh.moe/posts/ctf/hackergame-2023)，欢迎去支持一下（
 
 💡 若无特殊说明，以下的“友”均指 wuhang2003。
-{{< /alert >}}
+</CallOut>
 
 ### 猫咪小测 - 搜索的艺术
 
@@ -218,7 +219,7 @@ src: [*Minecraft - Disc 11 and 13 - Spectrogram*](https://www.youtube.com/watch?
 > *慢扫描电视（英语：Slow-scan television），简称SSTV，是业余无线电爱好者的一种主要图片传输方法，慢扫描电视通过无线电传输和接收单色或彩色静态图片。*
 >
 
-然后找个能从音频识别的工具就完成了（比如 <https://github.com/colaclanth/sstv> ）。
+然后找个能从音频识别的工具就完成了（比如 https://github.com/colaclanth/sstv ）。
 
 ~~果然看着答案说什么都轻松~~
 

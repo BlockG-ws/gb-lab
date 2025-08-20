@@ -13,11 +13,11 @@ top_img: <https://i.loli.net/2021/03/25/mfAZ2cgd4x6PL9D.png>
 cover: https://i.loli.net/2021/03/25/mfAZ2cgd4x6PL9D.png
 slug: unblock-ncm
 ---
+import Callout from '/src/components/shortcodes/Callout.astro'
 
-
-{{< alert icon="bell" cardColor="#9db4c0" iconColor="#303852" textColor="#324054" >}}
+<Callout>
 本文最后更新于 2021/11/12，方法可能于一段时间内可用，若不可用请评论告知。
-{{< /alert >}}
+</Callout>
 
 先来看效果：
 
@@ -45,9 +45,9 @@ UnblockNeteaseMusic是一个利用HTTP代理来解锁网易云音乐客户端“
 - 一个网易云客户端/网页端（用于测试）
 - ~~眼睛、正常思考的大脑、手（（~~
 
-{{< alert >}}
+<Callout>
 推荐配合较低版本的官方客户端进行使用，以下办法仅在6.5.2上测试通过。
-{{< /alert >}}
+</Callout>
 
 首先要说的是，官方readme并不完全适用于咱的Termux，会出现一些奇怪的问题，我在经历了一番折腾和查找后才最终成功。
 
@@ -166,6 +166,6 @@ UnblockNeteaseMusic是一个利用HTTP代理来解锁网易云音乐客户端“
 
 另外，官方readme提供的方法也可以一试（尽管这在部分设备上不起作用）  
 
-{{< alert icon="fire" cardColor="#e63946" iconColor="#1d3557" textColor="#f1faee" >}}
+<Callout type="danger">
 不建议使用别人搭建的UnblockNeteaseMusic代理，可能会造成隐私泄露等问题。（前两天有群友在传这种方法，所以顺便说一嘴）
-{{< /alert >}}
+</Callout>
