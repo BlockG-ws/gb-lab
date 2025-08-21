@@ -57,6 +57,7 @@ export const siteConfig = {
         type: 'artalk', // 'artalk','giscus','fediverse','email','hatsu','oom','twikoo','waline'
         artalk: {
             instanceDomain: 'artalk.gb0.dev', // the domain of your artalk instance
+            site: '', // the site name of the current site in artalk dashboard, default is "default"
         },
         giscus: {
             // get these params from giscus.app
