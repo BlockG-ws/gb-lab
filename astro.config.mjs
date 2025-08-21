@@ -22,7 +22,9 @@ export default defineConfig({
     trailingSlash: 'ignore',
     redirects: {
         // for the old routes still can be accessed
-        "/post/[...slug]": "/blog/[...slug]"
+        "/post/[...slug]": "/blog/[...slug]",
+        "/index.xml": "/rss.xml",
+        "/feed.rss": "/rss.xml",
     },
 
     build: {
