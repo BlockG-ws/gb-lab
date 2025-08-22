@@ -57,6 +57,8 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: |
+          # 对于 elog 无法运行的临时方案
+          sed --in-place=.orig s/\"type\"\:\ \"module\"/\"type\"\:\ \"commonjs\"/ package.json
           # 对应package.json中的script.sync
           pnpm run sync
 
