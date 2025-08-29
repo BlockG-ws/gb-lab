@@ -26,6 +26,14 @@ jobs:
         with:
           token: ${{ secrets.ELOG_GITHUB_TOKEN }}
 
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: |
+            - recursive: false
+              args: [--frozen-lockfile, --strict-peer-dependencies, --prod]
+
       - name: 安装node环境
         uses: actions/setup-node@master
         with:
@@ -40,12 +48,6 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package.json') }}
 
-      - name: 安装 pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: |
-            - recursive: false
-              args: [--frozen-lockfile, --strict-peer-dependencies, --prod]
 
       - name: 设置时区
         run: |
