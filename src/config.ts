@@ -26,6 +26,7 @@ export const siteConfig = {
         { text: "Tags", link: "/tags", openInNewTab: false },
         { text: "Friends", link: "/friends", openInNewTab: false },
         { text: "Donate", link: "/donate", openInNewTab: false },
+        { text: "Travelling", link: "https://www.travellings.cn/go.html", openInNewTab: true },
     ],
     // search
     // This only works when noClientJavaScript is enabled
