@@ -10,7 +10,7 @@ on:
   repository_dispatch:
     types:
       # api中的event_type就是这个
-      - deploy
+      - sync
   # 每早8点、晚21点同步一次，防止遗忘
   schedule:
     - cron: 0 0 * * *
