@@ -4,6 +4,7 @@ import {pages} from "./pages/_schemas";
 import {file} from 'astro/loaders';
 import { z } from 'astro:content';
 import {authors} from '../data/authors._schema.ts';
+import remoteYAML from "../plugins/fetch-remote-yaml";
 
 const blogCollection = defineCollection({
     type: 'content',
@@ -14,7 +15,7 @@ const pageCollection = defineCollection({
     schema: pages,
 });
 const blogRollData = defineCollection({
-    loader: file("src/data/links.yaml"),
+    loader: remoteYAML('https://raw.githubusercontent.com/GrassBlock1/Friend-of-mine/refs/heads/master/data/links.yaml'),
     schema: z.object({
         link: z.string(),
         avatar: z.string().optional(),

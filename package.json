@@ -27,6 +27,7 @@
     "echarts": "^6.0.0",
     "giscus": "^1.6.0",
     "ico-endec": "^0.1.6",
+    "js-yaml": "^4.1.0",
     "katex": "^0.16.22",
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",

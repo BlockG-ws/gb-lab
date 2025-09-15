@@ -50,6 +50,9 @@ importers:
       ico-endec:
         specifier: ^0.1.6
         version: 0.1.6
+      js-yaml:
+        specifier: ^4.1.0
+        version: 4.1.0
       katex:
         specifier: ^0.16.22
         version: 0.16.22
