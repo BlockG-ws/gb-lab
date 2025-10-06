@@ -37,7 +37,7 @@ description: 可玩性高的效率应用。
 
 （就是图标不太好看）
 
-![Screenshot_界面](https://tc.huajibk.cn/img/98 "Screenshot_界面")
+![Screenshot_界面](../../../assets/img/tap-tap/1c5a5edb87b69f93bf3561eeb26b3295.jpg "Screenshot_界面")
 
 ###### 注：这是开启黑暗模式的效果，具体可能不太相同。中文尚未完备，还在不断完善（甚至第一个版本还没有中文（
 
@@ -52,7 +52,7 @@ description: 可玩性高的效率应用。
 授权完成后就可以愉快食用了，你也可以通过调整各个设置，使其符合你的使用习惯。（建议配合Tasker食用，效果更佳）
 
 比如。你可以配置成这样（：  
-![Screenshot_配置动作](https://tc.huajibk.cn/img/99 "Screenshot_配置动作")
+![Screenshot_配置动作](../../../assets/img/tap-tap/f9512636aa3c6d82edc1bd539b89767a.jpg "Screenshot_配置动作")
 
 > 与Tasker联动的办法：Tap,Tap添加Tasker事件>Tasker>配置>事件>插件>Tap,Tap>编辑（实则没编辑项，点 _create_ 图标就行）>返回
 >
