@@ -12,6 +12,8 @@ const { title = '' } = Astro.props;
     <script>
         import Artalk from "artalk";
 
+        let artalkInstance = null;
+
         function initArtalk() {
             const atkElement = document.querySelector('#comments');
 
@@ -27,12 +29,36 @@ const { title = '' } = Astro.props;
             });
         }
 
+        function setupCommentObserver() {
+            const commentsElement = document.querySelector('#comments');
+            if (!commentsElement) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        initArtalk();
+                        observer.unobserve(entry.target); // Stop observing once loaded
+                    }
+                });
+            }, {
+                rootMargin: '100px' // Start loading 100px before the element is visible
+            });
+
+            observer.observe(commentsElement);
+        }
+
+        // Setup observer on page load
+        document.addEventListener('DOMContentLoaded', setupCommentObserver);
+
+
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', initArtalk);
+        // document.addEventListener('DOMContentLoaded', initArtalk);
 
         // Re-initialize on view transitions, fix issues with Astro's ClientRouter
         document.addEventListener('astro:page-load', () => {
-            initArtalk();
+            //initArtalk();
+            artalkInstance = null; // Reset instance for new page
+            setupCommentObserver();
         });
     </script>
 </div>
