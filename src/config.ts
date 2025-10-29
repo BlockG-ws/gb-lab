@@ -138,5 +138,25 @@ export const siteConfig = {
     neko: {
         enabled: false,
         type: 'mike' // more available, for a full list, check https://webneko.net/
-    }
+    },
+    // ActivityPub/Fediverse integration
+    activitypub: {
+        enabled: true, // enable ActivityPub federation
+        domain: 'lab.gb0.dev', // your domain
+        username: 'gb', // your fediverse username
+        autoPublish: true, // automatically publish new blog posts to fediverse
+        // Extended fields
+        //name: 'GrassBlock',
+        //summary: 'A blog about technology and life',
+        //icon: '/img/avatar.png',
+        //image: '/img/blog-cover.png',
+        // Optional keypair - when absent, activitypub features will be disabled at startup with a warning
+        //publicKey: process.env.ACTIVITYPUB_PUBLIC_KEY || '',
+        // federation rules
+        federation: {
+            enabled: process.env.ACTIVITYPUB_FEDERATION_ENABLED !== 'false',
+            allowList: process.env.ACTIVITYPUB_ALLOW_LIST?.split(','),
+            blockList: process.env.ACTIVITYPUB_BLOCK_LIST?.split(','),
+        },
+    },
 }
