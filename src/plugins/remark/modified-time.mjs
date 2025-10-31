@@ -4,11 +4,13 @@ import {statSync} from "node:fs";
 export function remarkModifiedTime() {
     return function (tree, file) {
         const filepath = file.history[0];
+        let modifiedTime;
         try {
-            file.data.astro.frontmatter.lastModified = execSync(`git log -1 --pretty="format:%cI" "${filepath}"`,{ encoding: 'utf8' }).toString();
+            modifiedTime = execSync(`git log -1 --pretty="format:%cI" "${filepath}"`,{ encoding: 'utf8' }).toString().trim();
         } catch(error) {
             console.log("fetch time from git log failed, falling back to file modification date");
-            file.data.astro.frontmatter.lastModified = statSync(filepath).mtime.toISOString();
+            modifiedTime = statSync(filepath).mtime.toISOString();
         }
+        file.data.astro.frontmatter.lastModified = modifiedTime;
     };
 }
