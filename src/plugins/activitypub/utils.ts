@@ -154,8 +154,12 @@ export function createWebFingerResponse(username: string, domain: string) {
 // Validate ActivityPub content type
 export function isActivityPubRequest(request: Request): boolean {
   const accept = request.headers.get('accept') || '';
+  const contentType = request.headers.get('content-type') || '';
   return accept.includes('application/activity+json') || 
-         accept.includes('application/ld+json');
+         accept.includes('application/ld+json') ||
+        // fix unacceptable content issues where the client didn't strictly want the json
+         contentType.includes('application/activity+json');
+
 }
 
 // Create proper ActivityPub response
