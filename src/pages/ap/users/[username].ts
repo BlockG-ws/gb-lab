@@ -19,7 +19,7 @@ export const GET: APIRoute = async ({ params, request }) => {
 
   // Only respond to ActivityPub requests
   if (!isActivityPubRequest(request)) {
-    return new Response('Not Acceptable', { status: 406 });
+    return new Response('Redirecting to post list', {status: 302, headers: {'location': '/blog'}});
   }
 
   try {
