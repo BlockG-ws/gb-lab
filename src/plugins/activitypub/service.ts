@@ -117,9 +117,9 @@ export class ActivityPubService {
       // Handle different activity types
       switch (activity.type) {
         case 'Follow':
-          return await this.handleFollowActivity(activity);
+          return await this.handleFollowActivity(activity, actorUsername);
         case 'Undo':
-          return await this.handleUndoActivity(activity);
+          return await this.handleUndoActivity(activity, actorUsername);
         case 'Create':
           return await this.handleCreateActivity(activity);
         default:
@@ -134,21 +134,56 @@ export class ActivityPubService {
   }
 
   // Handle Follow activity
-  private async handleFollowActivity(activity: any): Promise<Response> {
+  private async handleFollowActivity(activity: any, actorUsername?: string): Promise<Response> {
     const followerActor = activity.actor;
-    const targetActor = activity.object;
 
-    // Auto-accept follows for now (you might want to add approval logic)
-    const followId = uuidv4();
-    await this.db.insert(schema.followers).values({
-      id: followId,
-      actorId: targetActor,
-      followerActorId: followerActor,
-      accepted: true,
-      createdAt: new Date(),
-    });
+    // Resolve the target (our actor) - prefer route param, then activity.object (string or object), then configured actor
+    let targetActor: string;
+    if (actorUsername) {
+      targetActor = generateActorUrl(actorUsername);
+    } else if (typeof activity.object === 'string') {
+      targetActor = activity.object;
+    } else if (activity.object?.id) {
+      targetActor = activity.object.id;
+    } else {
+      targetActor = generateActorUrl(this.config.actor.preferredUsername);
+    }
 
-    // Send Accept activity
+    // Ensure we don't insert duplicates: check existing follower row
+    const existing = await this.db
+      .select()
+      .from(schema.followers)
+      .where(
+        and(
+          eq(schema.followers.followerActorId, followerActor),
+          eq(schema.followers.actorId, targetActor)
+        )
+      )
+      .limit(1);
+
+    if (!existing || existing.length === 0) {
+      const followId = uuidv4();
+      await this.db.insert(schema.followers).values({
+        id: followId,
+        actorId: targetActor,
+        followerActorId: followerActor,
+        accepted: true,
+        createdAt: new Date(),
+      });
+    } else if (!existing[0].accepted) {
+      // If present but not accepted, mark accepted
+      await this.db
+        .update(schema.followers)
+        .set({ accepted: true })
+        .where(
+          and(
+            eq(schema.followers.followerActorId, followerActor),
+            eq(schema.followers.actorId, targetActor)
+          )
+        );
+    }
+
+    // Send Accept activity from the resolved target actor to the follower
     const acceptActivity = createAcceptActivity(targetActor, activity);
     await this.sendActivity(acceptActivity, followerActor);
 
@@ -156,10 +191,22 @@ export class ActivityPubService {
   }
 
   // Handle Undo activity (e.g., unfollow)
-  private async handleUndoActivity(activity: any): Promise<Response> {
+  private async handleUndoActivity(activity: any, actorUsername?: string): Promise<Response> {
     if (activity.object?.type === 'Follow') {
       const followerActor = activity.actor;
-      const targetActor = activity.object.object;
+
+      let targetActor: string;
+      if (actorUsername) {
+        targetActor = generateActorUrl(actorUsername);
+      } else if (activity.object?.object) {
+        targetActor = activity.object.object;
+      } else if (typeof activity.object === 'string') {
+        targetActor = activity.object;
+      } else if (activity.object?.id) {
+        targetActor = activity.object.id;
+      } else {
+        targetActor = generateActorUrl(this.config.actor.preferredUsername);
+      }
 
       await this.db
         .delete(schema.followers)
