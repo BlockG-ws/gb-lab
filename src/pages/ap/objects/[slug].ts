@@ -3,6 +3,8 @@ import { getActivityPubService } from '@/plugins/activitypub/service';
 import { getActivityPubConfig } from '@/plugins/activitypub/config';
 import { createActivityPubResponse } from '@/plugins/activitypub/utils';
 
+export const prerender = false;
+
 export const GET: APIRoute = async ({ params }) => {
   try {
     const slug = params.slug;
