@@ -122,11 +122,14 @@ export function createCreateActivity(actor: string, object: any) {
 
 // Parse WebFinger resource
 export function parseWebFingerResource(resource: string): { username: string; domain: string } | null {
-  const match = resource.match(/^acct:([^@]+)@(.+)$/);
+  const match = resource.match(/^acct:(@?[^@]+)@(.+)$/);
   if (!match) return null;
-  
+
+  const rawUsername = match[1];
+  const username = rawUsername.startsWith('@') ? rawUsername.slice(1) : rawUsername;
+
   return {
-    username: match[1],
+    username,
     domain: match[2],
   };
 }
