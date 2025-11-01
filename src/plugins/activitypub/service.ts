@@ -4,11 +4,9 @@ import { generateKeyPair, createHttpSignature } from './crypto.ts';
 import { 
   createActor, 
   createCreateActivity, 
-  createFollowActivity, 
   createAcceptActivity,
   generateActivityId,
   generateActorUrl,
-  createActivityPubResponse 
 } from './utils.ts';
 import { getActivityPubConfig } from './config.ts';
 import { v4 as uuidv4 } from 'uuid';
@@ -119,7 +117,7 @@ export class ActivityPubService {
       // Handle different activity types
       switch (activity.type) {
         case 'Follow':
-          return await this.handleFollowActivity(activity, actorUsername);
+          return await this.handleFollowActivity(activity);
         case 'Undo':
           return await this.handleUndoActivity(activity);
         case 'Create':
@@ -136,7 +134,7 @@ export class ActivityPubService {
   }
 
   // Handle Follow activity
-  private async handleFollowActivity(activity: any, actorUsername?: string): Promise<Response> {
+  private async handleFollowActivity(activity: any): Promise<Response> {
     const followerActor = activity.actor;
     const targetActor = activity.object;
 
@@ -342,6 +340,34 @@ export class ActivityPubService {
 
     for (const follower of followers) {
       await this.sendActivity(createActivity, follower.followerActorId);
+    }
+  }
+
+  // New: fetch stored ActivityPub object by its public URL
+  async getObjectByUrl(url: string): Promise<any | null> {
+    const objects = await this.db
+      .select()
+      .from(schema.objects)
+      .where(eq(schema.objects.url, url))
+      .limit(1);
+
+    if (!objects || objects.length === 0) return null;
+
+    const obj = objects[0];
+    try {
+      return JSON.parse(obj.raw);
+    } catch (e) {
+      // Fallback: construct a minimal object
+      return {
+        '@context': 'https://www.w3.org/ns/activitystreams',
+        id: obj.id,
+        type: obj.type,
+        attributedTo: obj.attributedTo,
+        name: obj.name,
+        content: obj.content,
+        url: obj.url,
+        published: obj.published ? new Date(obj.published).toISOString() : undefined,
+      };
     }
   }
 }
