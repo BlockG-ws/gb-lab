@@ -5,7 +5,7 @@ import { getActivityPubConfig } from '@/plugins/activitypub/config';
 export const prerender = false;
 
 export const GET: APIRoute = async ({ request, url }) => {
-  const resource = url.searchParams.get('resource');
+  const resource = decodeURIComponent(url.searchParams.get('resource') || '');
 
   if (!resource) {
     return new Response('Missing resource parameter', { status: 400 });
