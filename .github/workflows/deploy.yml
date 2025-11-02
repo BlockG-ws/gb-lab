@@ -38,15 +38,8 @@ jobs:
           chmod 600 ~/.ssh/config
       - name: Deploy to Server
         run: |
-          ssh lab-deployer '
-          . ~/.local/bin/proxy.sh &&
-          . ~/.config/nvm/nvm.sh # this should fix the node command not found error &&
-          export ASTRO_TELEMETRY_DISABLED=true
-          cd ~/lab && git pull &&
-          ./scripts/restore-time-from-git.sh
-          pnpm install &&
-          pnpm build && echo "Trying to restart webserver..." && systemctl --user restart lab-webserver.service
-          '
+          git remote add lab-deployer:~/lab
+          git push origin master
       - name: Notify
         run: |
           curl https://${{ secrets.NTFY_HOST }} \
