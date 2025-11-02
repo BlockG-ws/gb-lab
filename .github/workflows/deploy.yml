@@ -38,8 +38,8 @@ jobs:
           chmod 600 ~/.ssh/config
       - name: Deploy to Server
         run: |
-          git remote add lab-deployer:~/lab
-          git push origin master
+          git remote add server lab-deployer:~/lab
+          git push server master
       - name: Notify
         run: |
           curl https://${{ secrets.NTFY_HOST }} \
