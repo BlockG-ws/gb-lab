@@ -40,17 +40,3 @@ jobs:
         run: |
           git remote add server lab-deployer:~/lab
           git push server master
-      - name: Notify
-        run: |
-          curl https://${{ secrets.NTFY_HOST }} \
-          -H "Authorization: Bearer ${{ secrets.NTFY_TOKEN }}" \
-          -d '{
-              "topic": "me",
-              "message": "快来查看吧",
-              "title": "实验室已成功部署",
-              "tags": ["bell"],
-              "priority": 4,
-              "click": "https://lab.gb0.dev",
-              "actions": [{ "action": "view", "label": "查看", "url": "https://lab.gb0.dev" }]
-          }'
-            
