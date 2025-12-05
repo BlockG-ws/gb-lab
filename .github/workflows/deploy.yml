@@ -39,4 +39,6 @@ jobs:
       - name: Deploy to Server
         run: |
           git remote add server lab-deployer:~/lab
+          git fetch server master
+          git merge --no-edit server/master
           git push server master
