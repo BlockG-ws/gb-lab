@@ -133,7 +133,7 @@ export const siteConfig = {
             websiteId: 'cd3f2502-70ea-411a-9e87-c96f0d46a788', // the id of your website in umami, get it from your umami dashboard
             // will be used as a fallback when javascript is disabled.
             // Note: the pixels record less information than the javascript code due to limitations.
-            pixelURL: 'https://cloud.umami.is/pixel-url', // the url of your pixel
+            pixelURL: 'https://umami.grassblock.eu.org/p/a8B4yJBVz', // the url of your pixel
         },
         goatcounter: {
             // provide solutions for tracking visitors without Javascript
