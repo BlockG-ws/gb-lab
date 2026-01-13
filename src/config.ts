@@ -149,7 +149,7 @@ export const siteConfig = {
     },
     // ActivityPub/Fediverse integration
     activitypub: {
-        enabled: true, // enable ActivityPub federation
+        enabled: false, // enable ActivityPub federation
         domain: 'lab.gb0.dev', // your domain
         username: 'gb', // your fediverse username
         autoPublish: true, // automatically publish new blog posts to fediverse
