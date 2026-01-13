@@ -11,6 +11,17 @@ import {
 import { getActivityPubConfig } from './config.ts';
 import { v4 as uuidv4 } from 'uuid';
 
+import { createFederation } from "@fedify/fedify";
+import { InProcessMessageQueue } from "@fedify/fedify";
+import {AstroDbKvStore} from "@/plugins/activitypub/kv.ts";
+
+const federation = createFederation({
+    kv: new AstroDbKvStore(),
+    queue: new InProcessMessageQueue(),
+});
+
+export default federation;
+
 export class ActivityPubService {
   private db: any;
   private config: any;

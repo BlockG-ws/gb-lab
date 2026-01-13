@@ -16,6 +16,7 @@ import {remarkModifiedTime} from "./src/plugins/remark/modified-time.mjs";
 import node from '@astrojs/node';
 
 import expressiveCode from 'astro-expressive-code';
+import db from '@astrojs/db';
 export default defineConfig({
     site: 'https://lab.gb0.dev',
     base: '/',
@@ -46,7 +47,7 @@ export default defineConfig({
         defaultLocale: "en",
     },
 
-    integrations: [sitemap(), expressiveCode(), mdx(), partytown()],
+    integrations: [sitemap(), expressiveCode(), mdx(), partytown(), db()],
 
     adapter: node({
       mode: 'standalone'
