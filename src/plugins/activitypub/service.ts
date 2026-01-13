@@ -1,4 +1,3 @@
-import { eq, and } from 'drizzle-orm';
 import { getDatabase, schema } from '@/plugins/activitypub/db/config.ts';
 import { generateKeyPair, createHttpSignature } from './crypto.ts';
 import { 

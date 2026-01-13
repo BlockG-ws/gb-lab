@@ -1,6 +1,3 @@
-import { sqliteTable, text, integer, primaryKey } from 'drizzle-orm/sqlite-core';
-import { pgTable, text as pgText, integer as pgInteger, boolean as pgBoolean, timestamp, uuid, primaryKey as pgPrimaryKey } from 'drizzle-orm/pg-core';
-
 // Common schema interface
 export interface ActivityPubActor {
   id: string;
