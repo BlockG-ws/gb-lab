@@ -13,7 +13,6 @@ import TableOfContentsButton from "../../components/toc/Button.astro";
 import "katex/dist/katex.css"
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../../i18n/utils';
 import OutDatedCallOut from "../../components/OutDatedCallOut.astro";
-import { getActivityPubConfig } from '@/plugins/activitypub/config';
 import CopyRight from "../../components/CopyRight.astro";
 
 const lang = getLangFromUrl(Astro.url);
@@ -53,7 +52,7 @@ const featuredImages = import.meta.glob(`/src/content/posts/*/featured.{avif,png
 const customFeaturedImage = entry.data.cover;
 
 /* optimize the og:image */
-const optimizedCustomFeaturedImage = customFeaturedImage && typeof customFeaturedImage === 'object' && 'src' in customFeaturedImage && customFeaturedImage.src.startsWith('http') ? customFeaturedImage : customFeaturedImage && typeof customFeaturedImage === 'string' ? customFeaturedImage : customFeaturedImage ? await getImage({src: customFeaturedImage, format: 'webp'}) : null;
+const optimizedCustomFeaturedImage = customFeaturedImage && typeof customFeaturedImage === 'object' && 'src' in customFeaturedImage && customFeaturedImage.src.startsWith('http') ? customFeaturedImage : customFeaturedImage && typeof customFeaturedImage === 'string' ? customFeaturedImage : customFeaturedImage ? await getImage({src: customFeaturedImage, width: 1080, format: 'webp'}) : null;
 
 const matchedImage = Object.keys(featuredImages).find(path => path.includes(slug));
 let matchedImage_src;
@@ -61,10 +60,6 @@ if (matchedImage && !customFeaturedImage) {
     matchedImage_src = await getImage({src: featuredImages[matchedImage] as ImageMetadata, format: 'webp'}) || null;
 }
 const firstImageURL = await ExtractFirstImage(Content)
-
-// ActivityPub alternate link
-const apConfig = getActivityPubConfig();
-const apObjectUrl = `${apConfig.baseUrl.replace(/\/$/, '')}/ap/objects/${slug}`;
 
 const headerImage = customFeaturedImage || matchedImage_src?.src || '';
 const cover = optimizedCustomFeaturedImage || matchedImage_src?.src || firstImageURL || `/blog/${slug}/featured.png` || '';
@@ -76,10 +71,6 @@ const cover = optimizedCustomFeaturedImage || matchedImage_src?.src || firstImag
   ogImage={typeof cover === 'string' ? cover : cover?.src}
   author={authorInfo.map((a: any) => a.name).join(', ')}
 >
-  <head>
-    <link rel="alternate" type="application/activity+json" href={apObjectUrl} />
-  </head>
-
     <article>
         <h1 class="title">{entry.data.title}</h1>
             {authorInfo.map((a: any) => <AuthorInfo data={a} />)}
