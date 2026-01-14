@@ -53,9 +53,7 @@ const featuredImages = import.meta.glob(`/src/content/posts/*/featured.{avif,png
 const customFeaturedImage = entry.data.cover;
 
 /* optimize the og:image */
-const optimizedCustomFeaturedImage = customFeaturedImage
-    ? await getImage({src: customFeaturedImage, format: 'webp'})
-    : null;
+const optimizedCustomFeaturedImage = customFeaturedImage && typeof customFeaturedImage === 'object' && 'src' in customFeaturedImage && customFeaturedImage.src.startsWith('http') ? customFeaturedImage : customFeaturedImage && typeof customFeaturedImage === 'string' ? customFeaturedImage : customFeaturedImage ? await getImage({src: customFeaturedImage, format: 'webp'}) : null;
 
 const matchedImage = Object.keys(featuredImages).find(path => path.includes(slug));
 let matchedImage_src;
@@ -67,6 +65,7 @@ const firstImageURL = await ExtractFirstImage(Content)
 // ActivityPub alternate link
 const apConfig = getActivityPubConfig();
 const apObjectUrl = `${apConfig.baseUrl.replace(/\/$/, '')}/ap/objects/${slug}`;
+
 const headerImage = customFeaturedImage || matchedImage_src?.src || '';
 const cover = optimizedCustomFeaturedImage || matchedImage_src?.src || firstImageURL || `/blog/${slug}/featured.png` || '';
 ---
