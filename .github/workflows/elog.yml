@@ -69,7 +69,7 @@ jobs:
         with:
           cwd: .
           default_author: github_actions
-          add: "['elog.cache.json', './src/content/posts']"
+          add: "['elog.cache.json', './src/content/posts', './src/assets/img']"
           message: 'chore: sync Notion posts (pushed by GitHub Actions)'
           fetch: true
           push: true
