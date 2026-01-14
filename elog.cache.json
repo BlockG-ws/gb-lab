@@ -109,9 +109,130 @@
       "realName": "写在自己的二十岁",
       "relativePath": "on-my-20th/写在自己的二十岁.md",
       "docPath": "content/posts/on-my-20th"
+    },
+    {
+      "id": "2bc8f53e-27ec-806c-8b1b-eee569a643b1",
+      "doc_id": "2bc8f53e-27ec-806c-8b1b-eee569a643b1",
+      "updated": 1768375980000,
+      "properties": {
+        "categories": "daily",
+        "tags": [
+          "年度总结",
+          "发点牢骚"
+        ],
+        "summary": "说是年度总结，其实是给只看我的博客的朋友们的一个“我还活着”的证明，然后再把今年发生的事情串起来，大抵就完成了",
+        "description": "梦到哪句说哪句",
+        "slug": "my-2025",
+        "title": "我的 2O25 ",
+        "cover": "../../../assets/img/my-2025/3c2fac8126470cd11500b6e864afa104.jpg",
+        "date": "2025-12-01 15:58:00",
+        "updated": "2026-01-14 15:33:00"
+      },
+      "catalog": [
+        {
+          "title": "my-2025",
+          "doc_id": "2bc8f53e-27ec-806c-8b1b-eee569a643b1"
+        }
+      ],
+      "realName": "我的 2O25 ",
+      "relativePath": "my-2025/我的 2O25 .md",
+      "docPath": "src/content/posts/my-2025"
     }
   ],
   "catalog": [
+    {
+      "object": "page",
+      "id": "1118f53e-27ec-8095-bbda-e57bdb809c5f",
+      "created_time": "2024-09-30T13:59:00.000Z",
+      "last_edited_time": "2024-10-04T10:04:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "d9622249-ee94-4bbd-ad75-f3633e15a77a"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "d9622249-ee94-4bbd-ad75-f3633e15a77a"
+      },
+      "cover": {
+        "type": "file",
+        "file": {
+          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/154c8cde-d9ed-4739-b2db-0407122f1c06/a03502fb-1ca5-4161-9be6-01d13cba435a/migrate-to-bitwarden-cover.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466QO77H7V7%2F20260114%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260114T073416Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEE8aCXVzLXdlc3QtMiJGMEQCIDM2cSfB5ZL7UcFp9aq9Zoh%2FKQ28HbQf83%2BxVycMa8OlAiALvIEAU0EX7RI2qZR5J1L2mH3hqh%2BKS%2FXuwsoVbDah6Sr%2FAwgYEAAaDDYzNzQyMzE4MzgwNSIMB2fK9rrhHUWHr%2BK8KtwDMRO1Zd4t4A0uw31UA7fQjVt4NZFIldZSs6VtBvzuD%2BIFhyq2UdbRYFRSr%2Bfr8gI52St3e2QS2WsmRkEIAk11p0LEee2lc%2B6EfB7lltDwKCZfQZJHrbKlVuhPgx6jTMiJjTCODxuNgJPCo%2BB%2Bh0n1S0fSUO1AtGraEPu1jaNJio0rnGHWeCL6Ydskh%2BhvUC%2F5CADeeGmb6K3pwTRdZEaFhB76EGLL2%2FM%2Fn%2BLQNEXUetp4Ot3ZkR71s7V%2B6C7jfodAk%2F5dxn5LNbGWNwUAMtJbzr35Uo4mZR09rcGdI6PIiI%2BBaO1eJkb%2Fb%2BgrE%2FNI3KNIOKT0uhY8u%2BLUnlJI0%2FpyN9o8ZcHgZxnQEl0RiucOI%2BGCk0kyRgiFV3XL4%2Fpyq%2B3UyCbUdMNwGvHjnuDzOGwhGyBzCrVDdSynCicw62nFw%2BvCgUccnkcx6yesmU2GmT%2FDdRFW%2FJPtpNGweRHtWU7cPmYFMmXAUGFFiliMZ%2F7cYmX%2Fpdq1BmUIDNiZlOj5wPYGc%2BHtUSrIyWlLb%2BBApAB6wh0hriKe8L%2FmvZ%2Bf%2B23iG%2B1WEIkH1rO39NNhFJMUmS%2ByORYlxud98oXL%2BL2wcaQz%2FrmTFIeoUlhtC6KX%2Bb%2FVzY6Z2SOoOfVdIZgf%2Fbgw9PicywY6pgHXDs0kC0B%2F%2Bt88OkihHKIJF9hyfI0tSQwMmxnarWHME3hOv2HwXNkG4ibP6W%2F0ahWWIH0cicShrXabprJ7f%2F07jzAqBlxJYoZTrVDY8vNJYYomhFHXC1izTggvHYadLm3Zuw7Knuiq7Jeuh9lky0b2SCW%2BfZzaiSwT3YZod%2B2NyE%2Bjg0bUrr9eVU4lu7VRfE6cFUkCq%2FPBBB8mIrhvWJfolsKerTMc&X-Amz-Signature=1b1fecde8f380852f723bb899ace69e7d7b07a9e0b270f1a9df4ffc9e66923f4&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+          "expiry_time": "2026-01-14T08:34:16.988Z"
+        }
+      },
+      "icon": {
+        "type": "emoji",
+        "emoji": "🔒"
+      },
+      "parent": {
+        "type": "database_id",
+        "database_id": "c577ebd8-c44a-44cb-917d-4acb88b92f67"
+      },
+      "archived": false,
+      "in_trash": false,
+      "is_locked": false,
+      "properties": {
+        "categories": "tech",
+        "tags": [
+          "今天开服务不用钱",
+          "Bitwarden",
+          "垃圾技术"
+        ],
+        "status": "已发布",
+        "summary": "转回 Bitwarden，并试图通过折腾还原此前使用 1password 的部分体验",
+        "description": "出于对开源的喜爱与偏好，我把密码管理器换回了自建的 Bitwarden，再次折腾了一番。",
+        "slug": "migrate-to-bitwarden-again",
+        "title": "再次迁移到 Bitwarden",
+        "cover": "https://prod-files-secure.s3.us-west-2.amazonaws.com/154c8cde-d9ed-4739-b2db-0407122f1c06/a03502fb-1ca5-4161-9be6-01d13cba435a/migrate-to-bitwarden-cover.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466QO77H7V7%2F20260114%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260114T073416Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEE8aCXVzLXdlc3QtMiJGMEQCIDM2cSfB5ZL7UcFp9aq9Zoh%2FKQ28HbQf83%2BxVycMa8OlAiALvIEAU0EX7RI2qZR5J1L2mH3hqh%2BKS%2FXuwsoVbDah6Sr%2FAwgYEAAaDDYzNzQyMzE4MzgwNSIMB2fK9rrhHUWHr%2BK8KtwDMRO1Zd4t4A0uw31UA7fQjVt4NZFIldZSs6VtBvzuD%2BIFhyq2UdbRYFRSr%2Bfr8gI52St3e2QS2WsmRkEIAk11p0LEee2lc%2B6EfB7lltDwKCZfQZJHrbKlVuhPgx6jTMiJjTCODxuNgJPCo%2BB%2Bh0n1S0fSUO1AtGraEPu1jaNJio0rnGHWeCL6Ydskh%2BhvUC%2F5CADeeGmb6K3pwTRdZEaFhB76EGLL2%2FM%2Fn%2BLQNEXUetp4Ot3ZkR71s7V%2B6C7jfodAk%2F5dxn5LNbGWNwUAMtJbzr35Uo4mZR09rcGdI6PIiI%2BBaO1eJkb%2Fb%2BgrE%2FNI3KNIOKT0uhY8u%2BLUnlJI0%2FpyN9o8ZcHgZxnQEl0RiucOI%2BGCk0kyRgiFV3XL4%2Fpyq%2B3UyCbUdMNwGvHjnuDzOGwhGyBzCrVDdSynCicw62nFw%2BvCgUccnkcx6yesmU2GmT%2FDdRFW%2FJPtpNGweRHtWU7cPmYFMmXAUGFFiliMZ%2F7cYmX%2Fpdq1BmUIDNiZlOj5wPYGc%2BHtUSrIyWlLb%2BBApAB6wh0hriKe8L%2FmvZ%2Bf%2B23iG%2B1WEIkH1rO39NNhFJMUmS%2ByORYlxud98oXL%2BL2wcaQz%2FrmTFIeoUlhtC6KX%2Bb%2FVzY6Z2SOoOfVdIZgf%2Fbgw9PicywY6pgHXDs0kC0B%2F%2Bt88OkihHKIJF9hyfI0tSQwMmxnarWHME3hOv2HwXNkG4ibP6W%2F0ahWWIH0cicShrXabprJ7f%2F07jzAqBlxJYoZTrVDY8vNJYYomhFHXC1izTggvHYadLm3Zuw7Knuiq7Jeuh9lky0b2SCW%2BfZzaiSwT3YZod%2B2NyE%2Bjg0bUrr9eVU4lu7VRfE6cFUkCq%2FPBBB8mIrhvWJfolsKerTMc&X-Amz-Signature=1b1fecde8f380852f723bb899ace69e7d7b07a9e0b270f1a9df4ffc9e66923f4&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+        "urlname": "1118f53e-27ec-8095-bbda-e57bdb809c5f",
+        "date": "2024-09-30 21:59:00",
+        "updated": "2024-10-04 18:04:00"
+      },
+      "url": "https://www.notion.so/Bitwarden-1118f53e27ec8095bbdae57bdb809c5f",
+      "public_url": null
+    },
+    {
+      "object": "page",
+      "id": "11e8f53e-27ec-8014-a027-f4877e4a5f26",
+      "created_time": "2024-10-13T15:28:00.000Z",
+      "last_edited_time": "2024-10-22T12:56:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "d9622249-ee94-4bbd-ad75-f3633e15a77a"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "d9622249-ee94-4bbd-ad75-f3633e15a77a"
+      },
+      "cover": null,
+      "icon": {
+        "type": "emoji",
+        "emoji": "📝"
+      },
+      "parent": {
+        "type": "database_id",
+        "database_id": "c577ebd8-c44a-44cb-917d-4acb88b92f67"
+      },
+      "archived": false,
+      "in_trash": false,
+      "is_locked": false,
+      "properties": {
+        "categories": "thinking",
+        "tags": [
+          "Blogging"
+        ],
+        "status": "已发布",
+        "summary": "不定时更新的快问快答环节（1/n），今天是独立博客自省问卷15题。",
+        "description": "尝试回答了独立博客自省问卷15题（https://yayu.net/4626.html）。",
+        "slug": "15-answers-to-blogging",
+        "title": "答独立博客自省问卷15题",
+        "urlname": "11e8f53e-27ec-8014-a027-f4877e4a5f26",
+        "date": "2024-10-13 23:28:00",
+        "updated": "2024-10-22 20:56:00"
+      },
+      "url": "https://www.notion.so/15-11e8f53e27ec8014a027f4877e4a5f26",
+      "public_url": null
+    },
     {
       "object": "page",
       "id": "1748f53e-27ec-80fc-b850-dd3fc19e6486",
@@ -143,16 +264,19 @@
       },
       "archived": false,
       "in_trash": false,
+      "is_locked": false,
       "properties": {
         "categories": "thinking",
         "tags": [
           "发点牢骚"
         ],
+        "status": "已发布",
         "summary": "希望下一个二十岁我还能有这样的热情",
         "description": "我和我的生理年龄结了个形婚。有点扛不住了，发点牢骚。",
         "slug": "on-my-20th",
         "title": "写在自己的二十岁",
         "cover": "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb",
+        "urlname": "1748f53e-27ec-80fc-b850-dd3fc19e6486",
         "date": "2025-01-07 19:59:00",
         "updated": "2025-02-10 22:36:00"
       },
@@ -161,50 +285,9 @@
     },
     {
       "object": "page",
-      "id": "11e8f53e-27ec-8014-a027-f4877e4a5f26",
-      "created_time": "2024-10-13T15:28:00.000Z",
-      "last_edited_time": "2024-10-22T12:56:00.000Z",
-      "created_by": {
-        "object": "user",
-        "id": "d9622249-ee94-4bbd-ad75-f3633e15a77a"
-      },
-      "last_edited_by": {
-        "object": "user",
-        "id": "d9622249-ee94-4bbd-ad75-f3633e15a77a"
-      },
-      "cover": null,
-      "icon": {
-        "type": "emoji",
-        "emoji": "📝"
-      },
-      "parent": {
-        "type": "database_id",
-        "database_id": "c577ebd8-c44a-44cb-917d-4acb88b92f67"
-      },
-      "archived": false,
-      "in_trash": false,
-      "properties": {
-        "categories": "thinking",
-        "tags": [
-          "Blogging"
-        ],
-        "status": "已发布",
-        "summary": "不定时更新的快问快答环节（1/n），今天是独立博客自省问卷15题。",
-        "description": "尝试回答了独立博客自省问卷15题（https://yayu.net/4626.html）。",
-        "slug": "15-answers-to-blogging",
-        "title": "答独立博客自省问卷15题",
-        "urlname": "11e8f53e-27ec-8014-a027-f4877e4a5f26",
-        "date": "2024-10-13 23:28:00",
-        "updated": "2024-10-22 20:56:00"
-      },
-      "url": "https://www.notion.so/15-11e8f53e27ec8014a027f4877e4a5f26",
-      "public_url": null
-    },
-    {
-      "object": "page",
-      "id": "1118f53e-27ec-8095-bbda-e57bdb809c5f",
-      "created_time": "2024-09-30T13:59:00.000Z",
-      "last_edited_time": "2024-10-04T10:04:00.000Z",
+      "id": "2bc8f53e-27ec-806c-8b1b-eee569a643b1",
+      "created_time": "2025-12-01T07:58:00.000Z",
+      "last_edited_time": "2026-01-14T07:33:00.000Z",
       "created_by": {
         "object": "user",
         "id": "d9622249-ee94-4bbd-ad75-f3633e15a77a"
@@ -214,15 +297,14 @@
         "id": "d9622249-ee94-4bbd-ad75-f3633e15a77a"
       },
       "cover": {
-        "type": "file",
-        "file": {
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/154c8cde-d9ed-4739-b2db-0407122f1c06/a03502fb-1ca5-4161-9be6-01d13cba435a/migrate-to-bitwarden-cover.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466QCOYAPVU%2F20250211%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250211T011514Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjELH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQDEhiP3hpkts4PPlKKLAB6uxbeQYvvQuhR1VvyfKclZ0QIhAKSfWPBZutJINkOd2FobRYSAGU9FkBEMvcVk7EGFb%2BWqKogECMn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgxjWbkiiagvCvd3%2FjEq3ANLVNbSixj4qt%2B5wgTruLyfRNzJ%2BtToY%2Fhv%2BcYPtEJ0E9x1TCYtDi3%2FlJW9Gww06TP9vcH1pwwu92YhPFrHO%2BP%2B30iM%2BiZEVYrr4TLm9gbOdLm6rrQl3I1L4lF7T11AsJ59HRBrVu63F8CA0d2NezH2DC2V7whSoLkQh9ahmaA%2FtvmaETrbqZEqJIxG24%2BjlToBdqJdH5IEQO%2FPPezpofXcqkfyC%2BeEOslRGyWfpdB2thr8RlEMUMDXO0d63xw3fc%2FE5xW453OPsUcC8q6EvETxL0dLP420IrPcX8zKorju15vF7DYMQxQyFKo74sNjK6CSPcko2NKy13E5sAmlAKzjMZr76dzgvpKuOjv59XGyqevZgOJUwQiSqjL0oK51j6qE%2Bb0mYlSCR%2BMRyTamtSp3tyFoyNx6KdixVG32%2FMxR9YUSXVQMWHDYiqyq1U1LBf8mxgyb7SoIVXCRd9%2BDq6v9ophZ4DVROZoAxwdMB1aejB0Jju02qwX0se7COW41JUoIzi%2FnC%2BaLX%2FR%2BXSKU75IoyA5RrD71REY7XR4l%2B3kYBJUM3s7EjCRA5cqvBuvGc57YKOfuvV%2BrGttSac6gO5a9klyowFT5PoFO4hk23TxIk6NrmO%2FXhtF7Gsw8DTDWsKq9BjqkAR78cOXVKSjoOuL%2BHAiiu%2Bmed%2BBa3fK8wgfIqfc4xnugP65G%2BzM7TrpUpqv5mC54J6zTvp8WOmBFGILVwS28Ew2ND07LACqr8jq9ZGKgtRa%2BBFD9F0KZ7qhfoKY3qQCFzgpxshFXvfpNWYNxeC2ODqUrRpwlvgaST2vYEA%2FX0fOpfLZWhbsxhgptSWVz9Cj0IDU6Z1twnqFlSY8hEIkxJz8br%2FTf&X-Amz-Signature=91e8807be0da18c7aa7004103f97454f50f443962b493f2a7027d59e0d3d2687&X-Amz-SignedHeaders=host&x-id=GetObject",
-          "expiry_time": "2025-02-11T02:15:14.056Z"
+        "type": "external",
+        "external": {
+          "url": "https://images.unsplash.com/photo-1730829807503-6ee686c4311a?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb"
         }
       },
       "icon": {
         "type": "emoji",
-        "emoji": "🔒"
+        "emoji": "5️⃣"
       },
       "parent": {
         "type": "database_id",
@@ -230,24 +312,22 @@
       },
       "archived": false,
       "in_trash": false,
+      "is_locked": false,
       "properties": {
-        "categories": "tech",
+        "categories": "daily",
         "tags": [
-          "今天开服务不用钱",
-          "Bitwarden",
-          "垃圾技术"
+          "年度总结",
+          "发点牢骚"
         ],
-        "status": "已发布",
-        "summary": "转回 Bitwarden，并试图通过折腾还原此前使用 1password 的部分体验",
-        "description": "出于对开源的喜爱与偏好，我把密码管理器换回了自建的 Bitwarden，再次折腾了一番。",
-        "slug": "migrate-to-bitwarden-again",
-        "title": "再次迁移到 Bitwarden",
-        "cover": "https://prod-files-secure.s3.us-west-2.amazonaws.com/154c8cde-d9ed-4739-b2db-0407122f1c06/a03502fb-1ca5-4161-9be6-01d13cba435a/migrate-to-bitwarden-cover.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466QCOYAPVU%2F20250211%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250211T011514Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjELH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQDEhiP3hpkts4PPlKKLAB6uxbeQYvvQuhR1VvyfKclZ0QIhAKSfWPBZutJINkOd2FobRYSAGU9FkBEMvcVk7EGFb%2BWqKogECMn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgxjWbkiiagvCvd3%2FjEq3ANLVNbSixj4qt%2B5wgTruLyfRNzJ%2BtToY%2Fhv%2BcYPtEJ0E9x1TCYtDi3%2FlJW9Gww06TP9vcH1pwwu92YhPFrHO%2BP%2B30iM%2BiZEVYrr4TLm9gbOdLm6rrQl3I1L4lF7T11AsJ59HRBrVu63F8CA0d2NezH2DC2V7whSoLkQh9ahmaA%2FtvmaETrbqZEqJIxG24%2BjlToBdqJdH5IEQO%2FPPezpofXcqkfyC%2BeEOslRGyWfpdB2thr8RlEMUMDXO0d63xw3fc%2FE5xW453OPsUcC8q6EvETxL0dLP420IrPcX8zKorju15vF7DYMQxQyFKo74sNjK6CSPcko2NKy13E5sAmlAKzjMZr76dzgvpKuOjv59XGyqevZgOJUwQiSqjL0oK51j6qE%2Bb0mYlSCR%2BMRyTamtSp3tyFoyNx6KdixVG32%2FMxR9YUSXVQMWHDYiqyq1U1LBf8mxgyb7SoIVXCRd9%2BDq6v9ophZ4DVROZoAxwdMB1aejB0Jju02qwX0se7COW41JUoIzi%2FnC%2BaLX%2FR%2BXSKU75IoyA5RrD71REY7XR4l%2B3kYBJUM3s7EjCRA5cqvBuvGc57YKOfuvV%2BrGttSac6gO5a9klyowFT5PoFO4hk23TxIk6NrmO%2FXhtF7Gsw8DTDWsKq9BjqkAR78cOXVKSjoOuL%2BHAiiu%2Bmed%2BBa3fK8wgfIqfc4xnugP65G%2BzM7TrpUpqv5mC54J6zTvp8WOmBFGILVwS28Ew2ND07LACqr8jq9ZGKgtRa%2BBFD9F0KZ7qhfoKY3qQCFzgpxshFXvfpNWYNxeC2ODqUrRpwlvgaST2vYEA%2FX0fOpfLZWhbsxhgptSWVz9Cj0IDU6Z1twnqFlSY8hEIkxJz8br%2FTf&X-Amz-Signature=91e8807be0da18c7aa7004103f97454f50f443962b493f2a7027d59e0d3d2687&X-Amz-SignedHeaders=host&x-id=GetObject",
-        "urlname": "1118f53e-27ec-8095-bbda-e57bdb809c5f",
-        "date": "2024-09-30 21:59:00",
-        "updated": "2024-10-04 18:04:00"
+        "summary": "说是年度总结，其实是给只看我的博客的朋友们的一个“我还活着”的证明，然后再把今年发生的事情串起来，大抵就完成了",
+        "description": "梦到哪句说哪句",
+        "slug": "my-2025",
+        "title": "我的 2O25 ",
+        "cover": "../../../assets/img/my-2025/3c2fac8126470cd11500b6e864afa104.jpg",
+        "date": "2025-12-01 15:58:00",
+        "updated": "2026-01-14 15:33:00"
       },
-      "url": "https://www.notion.so/Bitwarden-1118f53e27ec8095bbdae57bdb809c5f",
+      "url": "https://www.notion.so/2O25-2bc8f53e27ec806c8b1beee569a643b1",
       "public_url": null
     },
     {
@@ -281,6 +361,7 @@
       },
       "archived": false,
       "in_trash": false,
+      "is_locked": false,
       "properties": {
         "categories": "tech",
         "tags": [
