@@ -18,14 +18,11 @@ index: false
 
 # 捐赠方式
 ## 置顶位
-[skimit 星宫: 一个 Minecraft 生存+ 服务器](https://skimit.net/zh/)：Minecraft Java 原版公益服
-
-<!--腐竹是可爱猫猫，写在注释里应该没人看见（缩）-->
-
 <a href="https://www.netcup.com/?ref=246155"><img src="https://www.netcup.com/uploads/netcup_set_C_200x200_cfa0d54f57.png" width="200" height="200" alt="netcup.com" /></a>
 
 [![DigitalOcean Referral Badge](https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg)](https://www.digitalocean.com/?refcode=fdd1eeed5938&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
 
+[skimit 星宫: 一个 Minecraft 生存+ 服务器](https://skimit.net/zh/)：Minecraft Java 原版公益服
 
 ## 不花一分钱支持本站
 主要是自用机场的aff，如果你需要的话可以用我的链接注册，我会从中得到一点点收益。
@@ -44,10 +41,20 @@ index: false
 
 
 想添加一些内容？可以通过[Telegram](https://t.me/Grass_block)联系我。
+## 爱发电
+一次性或长期均可。
+
+<iframe src="https://afdian.com/leaflet?slug=Grass_Block" scrolling="no" frameborder="0" style="border: 0; width: 100%; height: 200px"></iframe>
+
+https://afdian.com/a/Grass_Block
+
 ## GitHub Sponsors
 感谢群友提供的技术支持，现在可以前往 https://github.com/sponsors/GrassBlock1 以赞助！
 
 <iframe src="https://github.com/sponsors/GrassBlock1/card" title="Sponsor GrassBlock1" style="border: 0; width: 100%; height: 100%"></iframe>
+
+## WeChat 赞赏码
+![wechat.png](../../../assets/img/wechat.png)
 
 ## Ko-fi
 Ko-fi 是一个支持创作者的平台，你可以通过这个平台给我买杯咖啡。（支持 PayPal 进行支付）
@@ -58,12 +65,6 @@ Ko-fi 是一个支持创作者的平台，你可以通过这个平台给我买�
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/grassblock)
 
-## WeChat 赞赏码
-![wechat.png](../../../assets/img/wechat.png)
-## 爱发电（长期没有使用，不太推荐）
-一次性或长期均可。
-
-https://afdian.net/@Grass_Block
 ## 区块链上的钱包
 Polygon 主网：`0x7974F5eBF9e8c63308BBC3EA0E86Aaa67902a953`
 
