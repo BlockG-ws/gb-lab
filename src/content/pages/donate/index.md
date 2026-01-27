@@ -33,7 +33,9 @@ index: false
 
 [小小布吉岛~](https://app.bujidao.org/register?code=AhnLeqDo)
 
-[DigitalOcean - 新注册送2个月200$余额](https://m.do.co/c/fdd1eeed5938)
+[DigitalOcean - 新注册送2个月 200$ 余额](https://m.do.co/c/fdd1eeed5938)
+
+[Zeabur - 通过与 AI 对话，轻松将任何项目部署到云端，新注册送 5$ 余额](https://zeabur.com/referral?referralCode=GrassBlock1&utm_source=GrassBlock1&utm_campaign=oss)
 
 <!--[Facmata - 新兴机场，优质原生ip解锁](https://dash.fmta.boo/#/register?code=vNjq7j0F)-->
 
