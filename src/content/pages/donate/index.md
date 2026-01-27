@@ -47,7 +47,7 @@ index: false
 ## GitHub Sponsors
 感谢群友提供的技术支持，现在可以前往 https://github.com/sponsors/GrassBlock1 以赞助！
 
-<iframe src="https://github.com/sponsors/GrassBlock1/card" title="Sponsor GrassBlock1" height="100" width="600" style="border: 0;"></iframe>
+<iframe src="https://github.com/sponsors/GrassBlock1/card" title="Sponsor GrassBlock1" style="border: 0; width: 100%; height: 100%"></iframe>
 
 ## Ko-fi
 Ko-fi 是一个支持创作者的平台，你可以通过这个平台给我买杯咖啡。（支持 PayPal 进行支付）
