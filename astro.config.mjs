@@ -6,7 +6,6 @@ import mdx from '@astrojs/mdx';
 
 import {remarkWordCount} from './src/plugins/remark/wordcount.js';
 
-import cloudflare from '@astrojs/cloudflare';
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
@@ -33,7 +32,7 @@ export default defineConfig({
     },
 
     markdown: {
-        remarkPlugins: [remarkMath, remarkWordCount, remarkModifiedTime],
+        remarkPlugins: [remarkMath, remarkWordCount,remarkModifiedTime],
         rehypePlugins: [rehypeKatex]
     },
 
