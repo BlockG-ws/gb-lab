@@ -16,6 +16,7 @@ import node from '@astrojs/node';
 
 import expressiveCode from 'astro-expressive-code';
 import db from '@astrojs/db';
+import remarkSpoiler from "./src/plugins/remark/spoiler.ts";
 export default defineConfig({
     site: 'https://lab.gb0.dev',
     base: '/',
@@ -32,7 +33,7 @@ export default defineConfig({
     },
 
     markdown: {
-        remarkPlugins: [remarkMath, remarkWordCount,remarkModifiedTime],
+        remarkPlugins: [remarkMath, remarkSpoiler,remarkWordCount,remarkModifiedTime],
         rehypePlugins: [rehypeKatex]
     },
 
