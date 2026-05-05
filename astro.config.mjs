@@ -50,7 +50,7 @@ export default defineConfig({
                 codes: ["zh-CN"]
             }
         ],
-        defaultLocale: "en",
+        defaultLocale: "zh-CN",
         routing: {
             prefixDefaultLocale: false
         }
