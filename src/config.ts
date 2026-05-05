@@ -35,7 +35,7 @@ export const siteConfig = {
         },
         // display i18n switcher when there are multiple languages for a page.
         // set it to false will completely disable the switcher.
-        displaySwitcher: true,
+        displaySwitcher: false,
     },
     navBarItems: [
         // additional items in the navbar
