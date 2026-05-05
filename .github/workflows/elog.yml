@@ -29,6 +29,8 @@ jobs:
       - name: 安装 bun
         uses: oven-sh/setup-bun@v2
 
+      - run: bun --bun install
+
       # 缓存 node_modules，缓存机制参见 GitHub 文档：https://help.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows
       - name: 缓存 node_modules
         uses: actions/cache@v4 # 使用 GitHub 官方的缓存 Action。
