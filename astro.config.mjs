@@ -50,7 +50,7 @@ export default defineConfig({
                 codes: ["zh-CN"]
             }
         ],
-        defaultLocale: "zh-CN",
+        defaultLocale: "zh-cn",
         routing: {
             prefixDefaultLocale: false
         }
@@ -60,5 +60,8 @@ export default defineConfig({
 
     adapter: node({
       mode: 'standalone'
-    })
+    }),
+    //experimental: {
+    //    rustCompiler: true
+    //}
 });
