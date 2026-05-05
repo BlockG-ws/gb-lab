@@ -1,6 +1,6 @@
 ---
 import {siteConfig} from "../config";
-import ActivityPubNativeComments from "./helper/comments/ActivityPubNative.astro";
+import FediverseComments from "./helper/comments/Fediverse.astro";
 import HatsuComments from "./helper/comments/Hatsu.astro";
 import Artalk from "./helper/comments/Artalk.astro";
 import Giscus from "./helper/comments/Giscus.astro";
@@ -20,8 +20,6 @@ const { mastodonLink, bskyLink, pageTitle } = Astro.props;
 ---
 {method === 'artalk' && <Artalk title={pageTitle} />}
 {method === 'giscus' && <Giscus />}
-<!-- if prerender === true is set then render from client -->
-{(method === 'fediverse' && !FediverseConfig.renderOnServer ) && <ActivityPubNativeComments /> }
-{(method === 'fediverse' && FediverseConfig.renderOnServer ) && <ActivityPubNativeComments server:defer><p>Loading comments...</p></ActivityPubNativeComments> }
+{method === 'fediverse' && <FediverseComments server:defer><p>Loading comments...</p></FediverseComments> }
 {method === 'hatsu' && <HatsuComments /> }
 {method === 'oom' && <OomComments mastodonLink={mastodonLink} bskyLink={bskyLink} />}

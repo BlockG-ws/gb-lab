@@ -6,12 +6,14 @@ Demo: https://icy-beach-00f5be01e.6.azurestaticapps.net/
 
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
+> NOTE: We are migrating to Astro 6! The older version, which will be live on `astro-5` branch, may not support all features listed below.  
+
 ## 🌌 Features
 - Minimal, terminal like
 - Ship only necessary JavaScript (even can be no JavaScript at all)
 - Full text search ~~based on `Fuse.js`~~
 - Full text RSS
-- Create Blogrolls via a yaml file
+- Create Blogrolls via a YAML file
 - Your status at Fediverse, now at your home
 - Comments powered by multiple engines
 - Umami/Goatcounter statics support
@@ -26,6 +28,8 @@ git clone https://git.gb0.dev/gb/mercury.git
 ```bash
 cd mercury && pnpm install
 ```
+> NOTE: if you had issues when installing dependencies, try to add `SHARP_IGNORE_GLOBAL_LIBVIPS=true` to avoid `sharp` from building from source.
+
 run the dev server:
 
 ```bash
@@ -38,9 +42,9 @@ All you need is editing the `astro.config.mjs`'s site & base.
 
 For further config, edit `src/config.ts` according to the comment.
 
-To start writing, put your markdown & mdx files to /src/content/posts folder.
+To start writing, put your Markdown & mdx files to /src/content/posts folder.
 
-To create a page, put markdown files into /src/content/pages folder.
+To create a page, put Markdown files into /src/content/pages folder.
 
 Shortcode-like components is also available at /src/components/shortcodes folder.
 
@@ -61,28 +65,35 @@ All commands are run from the root of the project, from a terminal:
 - [x] Initial project setup
 - [x] Basic theme implementation
 - [x] Better full-text search without `Fuse.js`
-- [x] A mode to make the site 0 javascript
+- [x] A mode to make the site 0 JavaScript
 - [x] Multiple authors via YAML
 - [ ] i18n support
   - [x] UI text
-  - [ ] Localized content (we need help!)
-  - [ ] Translations (we need help!)
+    - [ ] Support more languages (help needed!)
+  - [x] Localized content
+    - [ ] Alternative structure like Hugo's `index.[lang].md`
+  - [x] Translations
+    - [ ] Better language switcher
 - [x] Better support for printing version
 - [ ] Add support for more comment engines
+- [ ] Multiple comment engines in the same page
 - [x] Add support for umami statics
 - [x] Improve documentation
+- [ ] Bump to Astro 6
 - [ ] Release v1.0
 - [ ] ~~Integrate with Fediverse w/ activityPub~~
 - [ ] ~~Plain text version when visiting the site via `curl`~~ (can't be done with SSG mode)
 
 ## ⚙️ Advanced Usage
+### activitypub support
+There is an ongoing work to implement it on [lab ran by the author](https://raw.githubusercontent.com/BlockG-ws/gb-lab/) based on [Astro DB](https://docs.astro.build/en/guides/astro-db/#query-your-database) and [fedify](https://fedify.dev). Once it's done, the instructions will be updated here.
 ### i18n
-I have implemented i18n support for UI text, but not for content translations yet.
+i18n support for UI text and content translations are implemented, but the language switcher may be broken for some pages.
 
-To further implement i18n, you can:
-1. Create a new folder under `src/content/posts/` with the language code as the name (e.g., `en`, `zh-CN`, etc.).
-2. Copy your translated markdown files into the new folder.
-3. Copy the `src/pages/blog/` folder to `src/pages/[langcode]/blog`.
+To implement i18n, you should:
+1. (Recommended) Move existing content to `src/content/posts/[default locale]/`. (This is not required, but can make things easier)
+2. Create a new folder under `src/content/posts/` with the **language code** as the name (e.g., `en`, `zh-CN`, etc.).
+3. Add your translated Markdown files into the new folder.
 4. Update the i18n config in `astro.config.mjs` to include the new language code.
 5. Rebuild the site.
 ### plain text version when visiting the site via `curl`
@@ -92,20 +103,24 @@ To access it, you can visit `https://your-site.com/blog/your-post-slug.txt`.
 To automatically output the text version when visiting the site via `curl`, you can:
 1. If you are using caddy, add the following to your `Caddyfile`:
    ```caddyfile
-   @curl {
-        header_regexp User-Agent (?i)curl 
-   }
-   @text {
-        path_regexp text /blog/(.*)
-   }
-   handle @curl {
-        rewrite @text /blog/{http.regexp.text.1}.txt
-   }
+    @no_html {
+        # Match if Accept header does NOT contain text/html
+        not header_regexp Accept (?i)text/html
+        # Match the path and capture the blog slug
+        path_regexp text ^/blog/(.*)$
+    }
+    
+    # Handle the matched request
+    handle @no_html {
+        # Use the capture group from the 'text' path_regexp
+        rewrite /blog/{re.text.1}.txt
+    }
+
    ```
 2. If you are using cloudflare to proxy your site, you can add a page rule to redirect requests with the `curl` user agent to the `.txt` version of the blog post:
    If incoming requests match (Custom filter expression):
    ```
-   (http.request.full_uri wildcard r"https://yourblog/blog/*" and http.user_agent contains "curl")
+   (http.request.uri.path matches "^/blog/.*" and not any(http.request.headers["accept"][*] contains "text/html"))
    ```
    Then (Rewrite to,static):
    ```

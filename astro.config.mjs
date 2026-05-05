@@ -43,8 +43,17 @@ export default defineConfig({
     },
 
     i18n: {
-        locales: ["en", "zh-CN"],
-        defaultLocale: "zh-CN",
+        locales: [
+            "en",
+            {
+                path: "zh-cn",
+                codes: ["zh-CN"]
+            }
+        ],
+        defaultLocale: "en",
+        routing: {
+            prefixDefaultLocale: false
+        }
     },
 
     integrations: [sitemap(), expressiveCode(), mdx(), partytown(), db()],

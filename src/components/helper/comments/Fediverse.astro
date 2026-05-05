@@ -1,22 +1,20 @@
 ---
-import { siteConfig } from "../../../config";
+import { siteConfig } from "@/config";
 
 const fediverseConfig = siteConfig.comments.fediverse;
 const {
-  renderOnServer,
   instanceDomain,
   useV2api,
   token,
   useReverseProxy,
   reverseProxyUrl,
-  accountId
 } = fediverseConfig;
 
-const serverRender = fediverseConfig.renderOnServer
 
 // Create the full URL to search for
-const postUrl = Astro.url.href;
-
+const pageURL = new URL(Astro.request.headers.get('Referer') || Astro.url.href);
+// search for only the host/path in case the instance will try to resolve the post with activitypub
+const postUrl = new URL(pageURL).host + new URL(pageURL).pathname
 // Define the search API endpoint based on configuration
 let searchEndpoint: string;
 if (useReverseProxy && reverseProxyUrl) {
@@ -28,277 +26,110 @@ if (useReverseProxy && reverseProxyUrl) {
 
 // Prepare default variables
 let commentData: any = null;
-let replies: any[] = [];
+let replies = new Map<string, any[]>();
 
-if (serverRender) {
-  // Server-side rendering - fetch data during build
-  // Prepare URL
-  const params = new URLSearchParams();
-  params.append('q', postUrl);
-  params.append('type', 'statuses');
-  if (accountId) {
-    params.append('account_id', accountId);
+// Server-side rendering - fetch data during build
+// Prepare URL
+const params = new URLSearchParams();
+params.append('q', postUrl);
+params.append('type', 'statuses');
+const url = `${searchEndpoint}?${params.toString()}`;
+
+// Prepare fetch options
+const options: RequestInit = {
+  method: 'GET',
+  headers: {
+    'Accept': 'application/json',
   }
-  const url = `${searchEndpoint}?${params.toString()}`;
+};
 
-  // Prepare fetch options
-  const options: RequestInit = {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
+// Add authorization if token is provided
+if (token) {
+  (options.headers as Record<string, string>)['Authorization'] = `Bearer ${token}`;
+}
+
+// Fetch data
+commentData = await fetch(url, options).then(r => r.json());
+
+// Extract original post and get replies if available
+const comments = commentData.statuses || [];
+if (comments.length > 0) {
+  // Promise.all is required since Array.map is not async aware
+  // https://stackoverflow.com/a/40140562
+  await Promise.all(comments.map(async (comment) =>
+  // Fetch replies
+  {
+    const statusId = comment.id;
+    const contextUrl = `https://${instanceDomain}/api/v1/statuses/${statusId}/context`;
+    const contextResponse = await fetch(contextUrl, options);
+    if (contextResponse.ok) {
+      const contextData = await contextResponse.json();
+      replies.set(statusId,contextData.descendants || []);
     }
-  };
-
-  // Add authorization if token is provided
-  if (token) {
-    (options.headers as Record<string, string>)['Authorization'] = `Bearer ${token}`;
-  }
-
-  // Fetch data
-  commentData = await fetch(url, options).then(r => r.json());
-
-  // Extract original post and get replies if available
-  const statuses = commentData.statuses || [];
-  if (statuses.length > 0) {
-    const originalPost = statuses[0];
-
-    // Fetch replies
-    if (originalPost) {
-      const statusId = originalPost.id;
-      const contextUrl = `https://${instanceDomain}/api/v1/statuses/${statusId}/context`;
-      const contextResponse = await fetch(contextUrl, options);
-      if (contextResponse.ok) {
-        const contextData = await contextResponse.json();
-        replies = contextData.descendants || [];
-      }
-    }
-  }
+  }))
 }
 ---
 
 <div class="fediverse-comments">
   <div class="fediverse-status">
-    {serverRender ? (
+    {
         <>
           {!commentData || !commentData.statuses || commentData.statuses.length === 0 ? (
-              <div>No discussions found for this post on the Fediverse yet.</div>
-          ) : null}
-
-          {commentData && commentData.statuses && commentData.statuses.length > 0 ? (
-              <div class="original-post">
-                <div class="post-header">
-                  <img src={commentData.statuses[0].account.avatar} alt={commentData.statuses[0].account.display_name} class="avatar" />
-                  <div class="post-meta">
-                    <div class="post-author">{commentData.statuses[0].account.display_name}</div>
-                    <div class="post-username">@{commentData.statuses[0].account.acct}</div>
-                  </div>
-                </div>
-                <div class="post-content" set:html={commentData.statuses[0].content} />
-                <div class="post-stats">
-                  <span>🔁 {commentData.statuses[0].reblogs_count || 0}</span>
-                  <span>⭐ {commentData.statuses[0].favourites_count || 0}</span>
-                </div>
-                <div class="post-link">
-                  <a href={commentData.statuses[0].url} target="_blank" rel="noopener noreferrer">View post</a>
-                </div>
-              </div>
-          ) : null}
+              <p class="tip">No discussions found for this post on the Fediverse yet.</p>
+              <p class="tip">Try to search for <code>{postUrl}</code> with your fediverse account</p>
+          ) : (<>
+              <p class="tip">To make a comment, create a public post with the link to the post on fediverse.</p>
+              <p class="tip">To reply to a comment, copy the link of the 'view post' under the existing comments and search it on your instance and reply to it.</p>
+              {
+                commentData.statuses.map((status: any) => (
+                    <div class="original-post">
+                      <div class="post-header">
+                        <img src={status.account.avatar} alt={status.account.display_name} class="avatar"/>
+                        <div class="post-meta">
+                          <div class="post-author">{status.account.display_name}</div>
+                          <div class="post-username">@{status.account.acct}</div>
+                        </div>
+                      </div>
+                      <div class="post-content" set:html={status.content}/>
+                      <div class="post-stats">
+                        <span>🔁 {status.reblogs_count || 0}</span>
+                        <span>⭐ {status.favourites_count || 0}</span>
+                      </div>
+                      {(replies.get(status.id) || []).length > 0 && (
+                          <div class="replies-container">
+                            {(replies.get(status.id) || []).map((reply: any) => (
+                                <div class="post-replies">
+                                  <div class="reply-header">
+                                    <img src={reply.account.avatar} alt={reply.account.display_name} class="avatar"/>
+                                    <div class="post-meta">
+                                      <div class="post-author">{reply.account.display_name}</div>
+                                      <div class="post-username">@{reply.account.acct}</div>
+                                    </div>
+                                  </div>
+                                  <div class="post-content" set:html={reply.content}/>
+                                </div>
+                            ))}
+                          </div>
+                      )}
+                      <div class="post-link">
+                        <a href={status.url} target="_blank" rel="noopener noreferrer">View post</a>
+                      </div>
+                    </div>
+                ))
+              }
+            </>)}
         </>
-    ) : (
-        <>
-          <div id="loading-message">Loading comments from the Fediverse...</div>
-          <div id="error-message" style="display: none;"></div>
-          <div id="no-posts-message" style="display: none;">
-            No discussions found for this post on the Fediverse yet.
-          </div>
-        </>
-    )}
-  </div>
-
-  <div id="fediverse-replies">
-    {!serverRender ? (
-      <div class="replies-container">
-        {replies.map((reply) => (
-          <div class="reply">
-            <div class="post-header">
-              <img src={reply.account.avatar} alt={reply.account.display_name} class="avatar" />
-              <div class="post-meta">
-                <div class="post-author">{reply.account.display_name}</div>
-                <div class="post-username">@{reply.account.acct}</div>
-              </div>
-            </div>
-            <div class="reply-content" set:html={reply.content} />
-            <div class="post-stats">
-              <span>🔁 {reply.reblogs_count || 0}</span>
-              <span>⭐ {reply.favourites_count || 0}</span>
-            </div>
-            <div class="post-link">
-              <a href={reply.url} target="_blank" rel="noopener noreferrer">View reply</a>
-            </div>
-          </div>
-        ))}
-      </div>
-    ) : null}
+    }
   </div>
 </div>
 
-{!serverRender && (
-  <script define:vars={{
-    searchEndpoint,
-    postUrl,
-    token,
-    useReverseProxy,
-    accountId,
-    instanceDomain
-  }}>
-    async function fetchFediverseComments() {
-      const loadingEl = document.getElementById('loading-message');
-      const errorEl = document.getElementById('error-message');
-      const noPostsEl = document.getElementById('no-posts-message');
-      const repliesContainer = document.getElementById('fediverse-replies');
-
-      try {
-        // Define request parameters
-        const params = new URLSearchParams();
-        if (!useReverseProxy) {
-          params.append('q', postUrl);
-          params.append('type', 'statuses');
-          if (accountId) {
-            params.append('account_id', accountId);
-          }
-        }
-
-        // Prepare fetch options
-        const options = {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-          }
-        };
-
-        if (token && !useReverseProxy) {
-          options.headers['Authorization'] = `Bearer ${token}`;
-        }
-
-        // Make the API request
-        const url = useReverseProxy
-          ? `${searchEndpoint}?url=${encodeURIComponent(postUrl)}`
-          : `${searchEndpoint}?${params.toString()}`;
-
-        const response = await fetch(url, options);
-
-        if (!response.ok) {
-          throw new Error(`Failed to fetch comments: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-
-        // Process the statuses
-        const statuses = data.statuses || [];
-
-        if (statuses.length === 0) {
-          loadingEl.style.display = 'none';
-          noPostsEl.style.display = 'block';
-          return;
-        }
-
-        // Find the original post (by checking for our URL)
-        const originalPost = statuses[0];
-
-        if (!originalPost) {
-          loadingEl.style.display = 'none';
-          noPostsEl.style.display = 'block';
-          return;
-        }
-
-        // Render the original post
-        const originalPostHtml = `
-          <div class="original-post">
-            <div class="post-header">
-              <img src="${originalPost.account.avatar}" alt="${originalPost.account.display_name}" class="avatar">
-              <div class="post-meta">
-                <div class="post-author">${originalPost.account.display_name}</div>
-                <div class="post-username">@${originalPost.account.acct}</div>
-              </div>
-            </div>
-            <div class="post-content">
-              ${originalPost.content}
-            </div>
-            <div class="post-stats">
-              <span>🔁 ${originalPost.reblogs_count || 0}</span>
-              <span>⭐ ${originalPost.favourites_count || 0}</span>
-            </div>
-            <div class="post-link">
-              <a href="${originalPost.url}" target="_blank" rel="noopener noreferrer">View post</a>
-            </div>
-          </div>
-        `;
-
-        document.querySelector('.fediverse-status').innerHTML = originalPostHtml;
-
-        // Fetch the status and its context (replies)
-        const statusId = originalPost.id;
-        const contextUrl = `https://${instanceDomain}/api/v1/statuses/${statusId}/context`;
-        const contextResponse = await fetch(contextUrl, options);
-
-        if (!contextResponse.ok) {
-          throw new Error(`Failed to fetch replies: ${contextResponse.statusText}`);
-        }
-
-        const contextData = await contextResponse.json();
-        const replies = contextData.descendants || [];
-
-        // Render replies
-        if (replies.length > 0) {
-          const repliesHtml = replies.map(reply => `
-            <div class="reply">
-              <div class="post-header">
-                <img src="${reply.account.avatar}" alt="${reply.account.display_name}" class="avatar">
-                <div class="post-meta">
-                  <div class="post-author">${reply.account.display_name}</div>
-                  <div class="post-username">@${reply.account.acct}</div>
-                </div>
-              </div>
-              <div class="reply-content">
-                ${reply.content}
-              </div>
-              <div class="post-stats">
-                <span>🔁 ${reply.reblogs_count || 0}</span>
-                <span>⭐ ${reply.favourites_count || 0}</span>
-              </div>
-              <div class="post-link">
-                <a href="${reply.url}" target="_blank" rel="noopener noreferrer">View reply</a>
-              </div>
-            </div>
-          `).join('');
-
-          repliesContainer.innerHTML = `
-            <div class="replies-container">
-              ${repliesHtml}
-            </div>
-          `;
-        }
-      } catch (error) {
-        console.error('Error fetching Fediverse comments:', error);
-        loadingEl.style.display = 'none';
-        errorEl.textContent = `Failed to load comments: ${error.message}`;
-        errorEl.style.display = 'block';
-      }
-    }
-
-    // Call the fetch function when the component is loaded
-    document.addEventListener('DOMContentLoaded', fetchFediverseComments);
-  </script>
-)}
-
 <style>
-  .fediverse-comments {
-    margin-top: 2rem;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-
   .fediverse-status {
     margin-bottom: 1rem;
+  }
+
+  .fediverse-status p.tip {
+    margin: 1rem auto;
   }
 
   #error-message {
@@ -309,10 +140,8 @@ if (serverRender) {
 
   .original-post, .reply {
     border: 1px solid var(--border-color, #ddd);
-    border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
-    background-color: var(--comment-bg, rgba(0, 0, 0, 0.02));
   }
 
   .post-header, .reply-header {
@@ -324,7 +153,6 @@ if (serverRender) {
   .avatar {
     width: 48px;
     height: 48px;
-    border-radius: 50%;
     margin-right: 0.75rem;
   }
 
@@ -347,7 +175,7 @@ if (serverRender) {
     gap: 1rem;
     margin-top: 0.5rem;
     font-size: 0.9rem;
-    color: var(--text-secondary, #666);
+    color: var(--secondary-text-color);
   }
 
   .post-link {
@@ -356,7 +184,7 @@ if (serverRender) {
   }
 
   .post-link a {
-    color: var(--link-color, #0366d6);
+    color: var(--secondary-color);
     text-decoration: none;
   }
 

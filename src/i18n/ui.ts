@@ -1,12 +1,7 @@
-import { i18n } from "astro:config/client"
-
-export const languages = {
-    en: 'English',
-    'zh-CN': '中文（简体）',
+export const labels: Record<string, string> = {
+    'en': 'English',
+    'zh-cn': '简体中文'
 };
-
-export const defaultLang: string = i18n?.defaultLocale || 'en';
-export const showDefaultLang = false;
 
 export const ui = {
     en: {
@@ -37,7 +32,7 @@ export const ui = {
         'component.protected_content.button_label': 'Decrypt',
         'component.link_card.view_archived_version': 'View archived version',
     },
-    'zh-CN': {
+    'zh-cn': {
         'nav.home': '首页',
         'nav.blog': '博客',
         'search.placeholder': '搜索文章',

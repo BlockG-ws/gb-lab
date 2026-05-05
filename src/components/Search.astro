@@ -1,10 +1,9 @@
 ---
 import {siteConfig} from "../config";
-import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 const noscript = siteConfig.noClientJavaScript
 const searchEngine = siteConfig.searchEngine || 'google'
 const domain = Astro.url.host
@@ -74,6 +73,7 @@ const domain = Astro.url.host
     let searchIndex: Array<{
       title: string;
       description?: string;
+      lang?: string;
       slug?: string;
       date?: Date;
       searchableTitle: string;
@@ -195,7 +195,13 @@ const domain = Astro.url.host
         return;
       }
 
-      const searchItems = results.map(item => `
+      const searchItems = results.map(item => item.lang ? `<div class="search-result">
+      <a href="${item.lang}/blog/${item.slug}" tabindex="0">
+      <span class="result-title">${item.title}</span><br />
+      <span class="result-date">${new Date(item.date).toISOString().split('T')[0]|| '' } — 
+          <em>${item.description || ''}</em></span>
+      </a>
+      </div>` : `
       <div class="search-result">
         <a href="/blog/${item.slug}" tabindex="0">
           <span class="result-title">${item.title}</span><br /> 

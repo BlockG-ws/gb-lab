@@ -4,6 +4,8 @@ import {getImage} from "astro:assets";
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import {defaultLocale, getPostSlug, locales} from "@/i18n/utils.ts";
+import {getPathByLocale} from "astro:i18n";
 
 // Ensure cache directory exists
 const CACHE_DIR = 'node_modules/.astro/og-cache';
@@ -62,15 +64,19 @@ const fileCache = {
 };
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('posts',({ data }) => {
-      return import.meta.env.PROD ? data.draft !== true : true;
+  const blogEntries = await getCollection('posts', (post) => {
+    const languages = locales.filter(item => item !== defaultLocale);
+    return (import.meta.env.PROD ? post.data.draft !== true : true) && (languages.includes(post.id.split("/")[0]));
   });
-  return blogEntries.map(post => ({
-    params: { slug: post.slug }, props: { post },
-  }));
+
+  return blogEntries.map(post => {
+    const lang = getPathByLocale(post.id.split('/')[0]);
+    const slug = getPostSlug(post.filePath, post.id, true);
+    return { params: { lang, slug }, props: { post } };
+  });
 }
 
-// get the post has an external featured.* image files
+// get the post has a external featured.* image files
 async function getExternalImage(post) {
   // Check cache first
   if (externalImageCache.has(post.slug)) {
@@ -98,9 +104,13 @@ function checkForImages(markdownContent) {
 }
 
 // This function dynamically generates og:images for posts that don't have a featured image
-export async function GET({ props }) {
+export async function GET({ props, params }) {
   const {post} = props;
-
+  const { lang } = params;
+  if (!post.id.startsWith(lang)) {
+    // skip rendering non-local posts
+    return new Response(null);
+  }
   // Generate consistent cache key
   const cacheKey = `${post.slug}-${post.id}`;
 

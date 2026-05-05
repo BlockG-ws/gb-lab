@@ -1,43 +1,43 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-
-import {getCollection, getEntry, render} from 'astro:content';
-import Comments from "../../components/Comments.astro";
+import Layout from '@/layouts/Layout.astro';
+import { getCollection, getEntry } from 'astro:content';
+import Comments from "@/components/Comments.astro";
 import {getImage, Image} from "astro:assets";
-import {siteConfig} from "../../config";
-import ReplyViaEmail from "../../components/ReplyViaEmail.astro";
-import { ExtractFirstImage } from '../../plugins/extract-images';
-import AuthorInfo from "../../components/helper/authors/Info.astro";
-import TableOfContents from "../../components/toc/TableOfContents.astro";
-import TableOfContentsButton from "../../components/toc/Button.astro";
+import {siteConfig} from "@/config";
+import ReplyViaEmail from "@/components/ReplyViaEmail.astro";
+import { ExtractFirstImage } from '@/plugins/extract-images';
+import AuthorInfo from "@/components/helper/authors/Info.astro";
+import TableOfContents from "@/components/toc/TableOfContents.astro";
+import TableOfContentsButton from "@/components/toc/Button.astro";
 import "katex/dist/katex.css"
 import {
-    getLangFromUrl,
     useTranslations,
     defaultLocale,
     locales, getPostSlug
-} from '../../i18n/utils';
-import OutDatedCallOut from "../../components/OutDatedCallOut.astro";
-import CopyRight from "../../components/CopyRight.astro";
+} from '@/i18n/utils';
+import OutDatedCallOut from "@/components/OutDatedCallOut.astro";
+import CopyRight from "@/components/CopyRight.astro";
+import {getPathByLocale} from "astro:i18n";
 
-const lang = getLangFromUrl(Astro.url);
+const { lang, slug } = Astro.params
 const t = useTranslations(lang);
 export async function getStaticPaths() {
   const blogEntries = await getCollection('posts', (post) => {
-      const languages = locales.filter(item => item !== defaultLocale)
-      return (import.meta.env.PROD ? post.data.draft !== true : true) && (post.filePath.split("/")[0] === defaultLocale || !languages.includes(post.filePath.split("/")[0])); // for some backward compatibility.
+      const languages = locales.filter(item => item != defaultLocale)
+      return (import.meta.env.PROD ? post.data.draft !== true : true) && (languages.includes(post.filePath.split("/")[0]));
 });
   return blogEntries.map(entry => {
+      const lang = getPathByLocale(entry.filePath.split('/')[0]);
       const slug = getPostSlug(entry.filePath, entry.id, true);
-      return {params: { slug }, props: { entry }}
+      return { params: { lang, slug }, props: { entry } };
   });
 }
 
-const { entry } = Astro.props;
-const { Content, headings, remarkPluginFrontmatter } = await render(entry);
+const { entry }  = Astro.props;
+
+const { Content, headings, remarkPluginFrontmatter } = await entry.render();
 
 const noscript = siteConfig.noClientJavaScript
-const slug = Astro.params.slug;
 const author = Array.isArray(entry.data.author) ? entry.data.author : (entry.data.author !== undefined ? [entry.data.author] : [{collection: 'authors', id: siteConfig.defaultAuthor.id}]);
 
 // Get Wordcount and Last Updated Date
@@ -45,7 +45,7 @@ const wordcount = remarkPluginFrontmatter.wordcount;
 const lastUpdated = entry.data.updated ? entry.data.updated : remarkPluginFrontmatter.lastModified;
 
 const pubDate = new Date(entry.data.date).toISOString().split('T')[0]
-const lastUpdatedDate = entry.data.updated ? new Date(entry.data.updated).toISOString().split('T')[0] : new Date(lastUpdated).toISOString().split('T')[0];
+const lastUpdatedDate = new Date(lastUpdated).toISOString().split('T')[0]
 
 // Get author data
 const authorData = await Promise.all((author).map((singleAuthor) => getEntry(singleAuthor).then(authorEntry => authorEntry?.data)))
@@ -94,7 +94,7 @@ const cover = optimizedCustomFeaturedImage || matchedImage_src?.src || firstImag
     </article>
     <div class="extra-post" style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
         <CopyRight/>
-        <ReplyViaEmail title={entry.data.title} email={authorInfo[0].email} />
+        <ReplyViaEmail title={entry.data.title} email={authorInfo[0].email} lang={lang} />
         <p><a href="/blog">&larr; {t('article.back_to_posts')}</a></p>
         {!noscript && <h2>{t('article.comments')}</h2> <Comments pageTitle={entry.data.title} />}
         {!noscript &&
