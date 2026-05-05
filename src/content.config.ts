@@ -4,7 +4,7 @@ import {pages} from "./content/pages/_schemas";
 import {file,glob} from 'astro/loaders';
 import { z } from 'astro/zod';
 import {authors} from './data/authors._schema.ts';
-import remoteYAML from "../plugins/fetch-remote-yaml";
+import remoteYAML from "./plugins/fetch-remote-yaml";
 
 const blogCollection = defineCollection({
     loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/posts" }),
