@@ -11,8 +11,8 @@
     "astro": "astro",
     "sync:local": "elog sync -e .elog.env",
     "sync": "elog sync",
-    "db:migrate": "tsx src/scripts/migrate.ts",
-    "activitypub:init": "tsx src/scripts/migrate.ts"
+    "db:migrate": "astro db push",
+    "activitypub:init": "astro db push"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",

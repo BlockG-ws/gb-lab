@@ -1,7 +1,32 @@
 #!/usr/bin/env tsx
-import { generateKeyPair as gen } from '@/plugins/activitypub/crypto';
+import * as crypto from 'node:crypto';
 import * as fs from 'fs';
 import * as path from 'path';
+
+// Helper to generate key pair
+async function generateKeyPair() {
+  return await crypto.webcrypto.subtle.generateKey(
+    {
+      name: "RSASSA-PKCS1-v1_5",
+      modulusLength: 2048,
+      publicExponent: new Uint8Array([1, 0, 1]),
+      hash: "SHA-256",
+    },
+    true,
+    ["sign", "verify"]
+  );
+}
+
+async function exportPem(key: CryptoKey, type: "public" | "private"): Promise<string> {
+  const exported = await crypto.webcrypto.subtle.exportKey(type === "public" ? "spki" : "pkcs8", key);
+  const exportedAsString = Buffer.from(exported).toString("base64");
+  let pem = `-----BEGIN ${type === "public" ? "PUBLIC" : "PRIVATE"} KEY-----\n`;
+  for (let i = 0; i < exportedAsString.length; i += 64) {
+    pem += exportedAsString.substring(i, i + 64) + "\n";
+  }
+  pem += `-----END ${type === "public" ? "PUBLIC" : "PRIVATE"} KEY-----\n`;
+  return pem;
+}
 
 function escapeForEnv(pem: string) {
   // Convert multiline PEM to single-line with literal \n escapes
@@ -13,7 +38,9 @@ async function main() {
   const write = args.includes('--write') || args.includes('-w');
   const outFile = path.resolve(process.cwd(), '.env');
 
-  const { publicKey, privateKey } = gen();
+  const keys = await generateKeyPair();
+  const publicKey = await exportPem(keys.publicKey, "public");
+  const privateKey = await exportPem(keys.privateKey, "private");
 
   const publicEsc = escapeForEnv(publicKey);
   const privateEsc = escapeForEnv(privateKey);

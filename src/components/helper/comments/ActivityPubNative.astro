@@ -1,0 +1,143 @@
+---
+import { getActivityPubConfig } from "../../../plugins/activitypub/config";
+import { getRepliesAndLikes } from "../../../plugins/activitypub/service";
+
+const apConfig = getActivityPubConfig();
+const enableActivityPub = apConfig.enabled;
+
+// Define the activity object URL for the current post
+const activityPubObjectId = new URL(`/ap/objects${Astro.url.pathname.replace('/blog', '')}`, apConfig.baseUrl).href;
+
+// Prepare default variables
+let replies: any[] = [];
+let likes: any[] = [];
+let reposts: any[] = [];
+
+if (enableActivityPub) {
+  // Server-side rendering - fetch data from local db during build
+  const dbData = await getRepliesAndLikes(activityPubObjectId);
+  replies = dbData.replies;
+  likes = dbData.likes;
+  reposts = dbData.reposts;
+}
+---
+
+<div class="fediverse-comments">
+  <div class="fediverse-status">
+        <>
+          <div class="post-stats" style="margin-bottom: 1rem;">
+            <span>💬 {replies.length} Replies</span>
+            <span>🔁 {reposts.length} Reposts</span>
+            <span>⭐ {likes.length} Likes</span>
+          </div>
+          <div class="post-link" style="margin-bottom: 1rem;">
+             <a href={activityPubObjectId} target="_blank" rel="noopener noreferrer">Interact with this post via ActivityPub</a>
+          </div>
+        </>
+  </div>
+
+  <div id="fediverse-replies">
+      <div class="replies-container">
+        {replies.length === 0 && <div class="no-replies" style="opacity: 0.7;">No replies yet.</div>}
+        {replies.map((reply) => {
+            // Attempt to extract display name and url if available in the raw object
+            const replyObject = reply.object;
+            const actorName = typeof reply.actor === 'string' ? reply.actor : (reply.actor?.name || 'Unknown User');
+            const authorUrl = typeof reply.actor === 'string' ? reply.actor : reply.actor?.id;
+            
+            return (
+          <div class="reply">
+            <div class="post-header">
+              <div class="post-meta">
+                <div class="post-username">
+                    <a href={authorUrl} target="_blank" rel="noopener noreferrer">{actorName}</a>
+                </div>
+              </div>
+            </div>
+            <div class="reply-content" set:html={replyObject?.content || '<em>Reply content hidden or not available</em>'} />
+          </div>
+        )})}
+      </div>
+  </div>
+</div>
+
+<style>
+  .fediverse-comments {
+    margin-top: 2rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .fediverse-status {
+    margin-bottom: 1rem;
+  }
+
+  #error-message {
+    color: #e74c3c;
+    padding: 0.5rem;
+    border-left: 3px solid #e74c3c;
+  }
+
+  .original-post, .reply {
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--comment-bg, rgba(0, 0, 0, 0.02));
+  }
+
+  .post-header, .reply-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+  }
+
+  .post-author {
+    font-weight: bold;
+  }
+
+  .post-username {
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+
+  .post-content, .reply-content {
+    margin: 0.75rem 0;
+    overflow-wrap: break-word;
+  }
+
+  .post-stats {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary, #666);
+  }
+
+  .post-link {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .post-link a {
+    color: var(--link-color, #0366d6);
+    text-decoration: none;
+  }
+
+  .post-link a:hover {
+    text-decoration: underline;
+  }
+
+  .replies-container {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    border-left: 2px solid var(--border-color, #ddd);
+    padding-left: 1rem;
+  }
+</style>

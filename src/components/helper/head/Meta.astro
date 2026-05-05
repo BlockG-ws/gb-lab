@@ -20,10 +20,12 @@ interface Props {
 
 const { title, author,description, ogImage = "" } = Astro.props
 
-// quick fix for those which only recognize full urls
-//const featuredImage = ogImage.startsWith('http') ? ogImage : `${Astro.url.origin}${ogImage}`
-
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+import { getActivityPubConfig } from "../../../plugins/activitypub/config";
+const apConfig = getActivityPubConfig();
+const enableActivityPub = apConfig.enabled;
+const apActor = enableActivityPub ? new URL(`/ap/users/${apConfig.actor.preferredUsername}`, apConfig.baseUrl).href : undefined;
 ---
 <meta name="title" content={title} />
 {author && <meta name="author" content={author} />}
@@ -40,6 +42,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <link rel="icon" href={FaviconSvg.src} type="image/svg+xml" />
 <link rel="apple-touch-icon" href={appleTouchIcon.src} />
 { siteConfig.pwa && <link rel="manifest" href="/manifest.json" /> }
+{/* ActivityPub Discovery */}
+{enableActivityPub && <link rel="alternate" type="application/activity+json" href={apActor} />}
+{Astro.url.pathname.includes("/blog/") && enableActivityPub && <link rel="alternate" type="application/activity+json" href={new URL(`/ap/objects${Astro.url.pathname.replace('/blog', '')}`, apConfig.baseUrl).href} />}
+
 {/* Open Graph / Facebook */}
 <meta name="og:title" content={title} />
 <meta name="og:description" content={description} />
