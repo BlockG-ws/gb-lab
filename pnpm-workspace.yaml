@@ -1,5 +1,0 @@
-onlyBuiltDependencies:
-  - esbuild
-  - keytar
-  - sharp
-  - workerd
