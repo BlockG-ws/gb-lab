@@ -26,18 +26,8 @@ jobs:
         with:
           token: ${{ secrets.ELOG_GITHUB_TOKEN }}
 
-
-      - name: 安装 pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: |
-            - recursive: false
-              args: [--frozen-lockfile, --strict-peer-dependencies, --prod]
-
-      - name: 安装node环境
-        uses: actions/setup-node@master
-        with:
-          node-version: "22.x"
+      - name: 安装 bun
+        uses: oven-sh/setup-bun@v2
 
       # 缓存 node_modules，缓存机制参见 GitHub 文档：https://help.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows
       - name: 缓存 node_modules
@@ -59,10 +49,8 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: |
-          # 对于 elog 无法运行的临时方案
-          sed --in-place=.orig s/\"type\"\:\ \"module\"/\"type\"\:\ \"commonjs\"/ package.json
           # 对应package.json中的script.sync
-          pnpm run sync
+          bun --bun run sync
 
       - name: 推送到仓库
         uses: EndBug/add-and-commit@v9
