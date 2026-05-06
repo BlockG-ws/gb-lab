@@ -19,7 +19,6 @@ export async function ExtractFirstImage(Content) {
     // The transform function returns a promise, so we need to await it
     await transform(rawContent.replace(/^<!DOCTYPE html>/, ''), [
         async (node) => {
-            console.log(node)
             await walk(node, (node) => {
                 if (node.name === "img" && node.attributes.src && !firstImageUrl) {
                     // Store the image URL we find
