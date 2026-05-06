@@ -12,7 +12,7 @@ export async function GET() {
         title: post.data.title,
         description: post.data.description || '',
         date: post.data.date,
-        slug: post.slug
+        slug: post.id
     }));
 
     return new Response(JSON.stringify(searchIndex), {

@@ -2,7 +2,7 @@ import {getCollection} from "astro:content";
 
 const posts = await getCollection('posts')
 
-const slugs = posts.map(post => post.slug)
+const slugs = posts.map(post => post.id)
 
 export const prerender = false
 

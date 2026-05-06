@@ -58,8 +58,6 @@ export async function GET(context) {
         const author = Array.isArray(post.data.author) ? post.data.author : (post.data.author !== undefined ? [post.data.author] : [{collection: 'authors', id: siteConfig.defaultAuthor.id}]);
         const authorData = await Promise.all((author).map((singleAuthor) => getEntry(singleAuthor).then(authorEntry => authorEntry?.data)))
         const authorInfo =  authorData.includes(undefined) ? [{data: siteConfig.defaultAuthor}] : authorData;
-
-
         // Make sure each feed item has required properties with proper formatting
         feedItems.push({
             title: post.data.title,
@@ -67,7 +65,7 @@ export async function GET(context) {
             pubDate: post.data.date,
             categories: post.data.categories,
             author: authorInfo.map((a) => a.name).join(', ') || siteConfig.defaultAuthor.name,
-            link: `${baseUrl}/blog/${post.slug}`,
+            link: `${baseUrl}/blog/${post.id}`,
             content,
         });
 
