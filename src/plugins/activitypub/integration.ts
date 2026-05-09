@@ -8,8 +8,9 @@ import { v4 as uuidv4 } from "uuid";
 export async function publishToActivityPub(post: {
   title: string;
   content: string;
-  slug: string;
+  id: string;
   excerpt?: string;
+  published?: Date;
 }) {
   try {
     const config = getActivityPubConfig();
@@ -19,8 +20,8 @@ export async function publishToActivityPub(post: {
     }
 
     const username = config.actor.preferredUsername;
-    const postUrl = new URL(`/blog/${post.slug}`, config.baseUrl);
-    const objectId = new URL(`/ap/objects/${post.slug}`, config.baseUrl);
+    const postUrl = new URL(`/blog/${post.id}`, config.baseUrl);
+    const objectId = new URL(`/ap/objects/${post.id}`, config.baseUrl);
     
     // Create a summary for ActivityPub (use excerpt or truncated content)
     const summary = post.excerpt || (post.content.length > 500 
@@ -39,14 +40,14 @@ export async function publishToActivityPub(post: {
       content: post.content,
       url: postUrl,
       attribution: ctx.getActorUri(username),
-      published: new Date(),
+      published: post.published || new Date(),
     });
 
     const createActivity = new Create({
       id: new URL(`/ap/activities/${uuidv4()}`, config.baseUrl),
       actor: ctx.getActorUri(username),
       object: article,
-      published: new Date(),
+      published: post.published || new Date(),
       tos: [new URL("https://www.w3.org/ns/activitystreams#Public")],
     });
 
