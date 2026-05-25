@@ -11,7 +11,6 @@
     --terminal-green: #a3be8c;
     --terminal-yellow: #ebcb8b;
     --terminal-red: #bf616a;
-    --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
 
 /* Light theme */
@@ -59,7 +58,7 @@ html {
 }
 
 html, body {
-    font-family: var(--font-mono), monospace;
+    font-family: var(--font-pixel), monospace;
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.5;
@@ -81,7 +80,7 @@ a:hover {
 }
 
 button, input {
-    font-family: var(--font-mono), monospace;
+    font-family: var(--font-pixel), monospace;
 }
 
 .container {
@@ -276,6 +275,10 @@ div.content {
     div.expressive-code {
         padding: 1rem 0;
     }
+    pre code {
+        font-family: var(--font-pixel), monospace;
+    }
+
     table {
         border-collapse: collapse;
     }

@@ -25,7 +25,6 @@
     "@astrojs/sitemap": "^3.7.2",
     "@elog/cli": "0.15.0-beta.1",
     "@fedify/fedify": "^1.10.8",
-    "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "artalk": "^2.9.1",
     "astro": "^6.2.2",
     "astro-expressive-code": "^0.41.7",

@@ -1,4 +1,4 @@
-import {defineConfig} from 'astro/config';
+import {defineConfig, fontProviders} from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 
@@ -36,6 +36,13 @@ export default defineConfig({
         remarkPlugins: [remarkMath, remarkSpoiler,remarkWordCount,remarkModifiedTime],
         rehypePlugins: [rehypeKatex]
     },
+
+    fonts: [{
+        provider: fontProviders.fontsource(),
+        name: "Fusion Pixel 12px Monospaced SC",
+        cssVariable: "--font-pixel",
+    }
+    ],
 
     image: {
         responsiveStyles: true,

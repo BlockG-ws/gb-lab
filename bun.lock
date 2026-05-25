@@ -15,7 +15,6 @@
         "@astrojs/sitemap": "^3.7.2",
         "@elog/cli": "0.15.0-beta.1",
         "@fedify/fedify": "^1.10.8",
-        "@fontsource-variable/jetbrains-mono": "^5.2.8",
         "artalk": "^2.9.1",
         "astro": "^6.2.2",
         "astro-expressive-code": "^0.41.7",
@@ -316,8 +315,6 @@
     "@flowusx/flowus-to-md": ["@flowusx/flowus-to-md@0.0.5-beta.5", "", { "dependencies": { "@flowusx/flowus-client": "0.0.5-beta.4", "@flowusx/flowus-shared": "0.0.5-beta.4", "@flowusx/flowus-types": "0.0.5-beta.4", "markdown-table": "^2.0.0" } }, "sha512-dz0x3ceHjcCCxDqKoUxmhGGbTXmd5aveBLJwXaKyNTtl1mS+PhD7xNsIVJZ/S6q6U4uK+C2h3X8LAumGJTg9Rw=="],
 
     "@flowusx/flowus-types": ["@flowusx/flowus-types@0.0.5-beta.4", "", {}, "sha512-aQXSfidzKFRJrF8lVYA7r7QOvucBbiqkjvhx61dVSXMJXH8ePV3zJw5GOKz+woe6N9fRQXJJuXjqU/rIWoKDIA=="],
-
-    "@fontsource-variable/jetbrains-mono": ["@fontsource-variable/jetbrains-mono@5.2.8", "", {}, "sha512-WBA9elru6Jdp5df2mES55wuOO0WIrn3kpXnI4+W2ek5u3ZgLS9XS4gmIlcQhiZOWEKl95meYdvK7xI+ETLCq/Q=="],
 
     "@halo-dev/api-client": ["@halo-dev/api-client@2.10.0", "", {}, "sha512-c1fgp+xzE1gQ7O36miWU2Oz+Uh1G4Hqs3clxLSxBD7vuvktgndZGZblNDi5morHB9UkiauAIQP0+PH9L9jwBfA=="],
 

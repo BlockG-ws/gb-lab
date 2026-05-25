@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import '@fontsource-variable/jetbrains-mono/index.css'
+import { Font } from "astro:assets";
 import Search from '../components/Search.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 import ThemeSwitcher_CSSOnly from '../components/ThemeSwitcher@CSSOnly.astro';
@@ -11,6 +11,10 @@ import { siteConfig } from "../config";
 import Statistics from "../components/Statistics.astro";
 import Navbar from "../components/Navbar.astro";
 
+import PoweredBy from "../components/PoweredBy.astro";
+import SPARouter from "../components/helper/spa/SPARouter.astro";
+import Spinner from "../components/helper/spa/Spinner.astro";
+import LanguagePicker from "@/components/helper/i18n/LanguagePicker.astro";
 import {
     i18n,
 } from "astro:config/client";
@@ -23,10 +27,6 @@ interface Props {
   ogImage?: string;
 }
 
-import PoweredBy from "../components/PoweredBy.astro";
-import SPARouter from "../components/helper/spa/SPARouter.astro";
-import Spinner from "../components/helper/spa/Spinner.astro";
-import LanguagePicker from "@/components/helper/i18n/LanguagePicker.astro";
 const spaEnabled = siteConfig.spa
 
 const noscript = siteConfig.noClientJavaScript
@@ -53,6 +53,7 @@ const { title = pageTitle, author = siteConfig.defaultAuthor.name,description = 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <Font cssVariable="--font-pixel" />
     <Meta title={ogTitle} author={author} description={description} ogImage={ogImage} />
     <title>{pageTitle}</title>
     {spaEnabled && <SPARouter />}
