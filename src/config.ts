@@ -155,7 +155,7 @@ export const siteConfig = {
     },
     // footer
     // you can write HTML safely here
-    customFooter: '<p>给岁月以文明，给时光以生命。</p> <br> <a href="https://icp.gov.moe/?keyword=20220007" target="_blank">萌ICP备20220007号</a>',
+    customFooter: '<p>给岁月以文明，给时光以生命。</p> <a href="https://icp.gov.moe/?keyword=20220007" target="_blank">萌ICP备20220007号</a>',
     // the preset of the "powered by" text
     // defaults to 'Powered by Mercury', see PoweredBy.astro for more details
     // can be any values in `default`, `withastro`, `plain`, `plainwithastro`, `formula`, `iconsonly` and `none`, any other value will be treated as `default`.

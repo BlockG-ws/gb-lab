@@ -36,15 +36,6 @@ const noscript = siteConfig.noClientJavaScript
         const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const percent = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
         progressEl.style.width = percent + "%";
-        // When the user scrolls down from the top of the document, show the button
-        if (scrollTop > document.documentElement.clientHeight) {
-            toTopButton.classList.remove("fade-out");
-            toTopButton.classList.add("fade-in");
-            toTopButton.style.display = "block";
-        } else {
-            toTopButton.classList.remove("fade-in");
-            toTopButton.classList.add("fade-out");
-        }
     }
 
     // update on scroll (passive for performance)
@@ -68,7 +59,6 @@ const noscript = siteConfig.noClientJavaScript
 <style>
     /* Add a conic gradient mask or border to simulate progress */
     #toTopBtn {
-        position: relative;
         overflow: hidden;
     }
 
