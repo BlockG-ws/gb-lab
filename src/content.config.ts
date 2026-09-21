@@ -15,7 +15,7 @@ const pageCollection = defineCollection({
     loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/pages" }),
 });
 const blogRollData = defineCollection({
-    loader: remoteYAML('https://raw.githubusercontent.com/GrassBlock1/Friend-of-mine/refs/heads/master/data/links.yaml'),
+    loader: remoteYAML('https://cdn.jsdelivr.net/gh/GrassBlock1/Friend-of-mine@master/data/links.yaml'),
     schema: z.object({
         link: z.string(),
         avatar: z.string().optional(),
