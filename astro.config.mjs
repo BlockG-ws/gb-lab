@@ -14,9 +14,8 @@ import {mdastModifiedTimePlugin} from "@/plugins/satteri/modified-time.mjs";
 import {mdastSpoilerPlugin} from "@/plugins/satteri/spoiler.ts";
 import satteriKatex from "satteri-katex";
 
-
 import expressiveCode from 'astro-expressive-code';
-import db from '@astrojs/db';
+
 export default defineConfig({
     site: 'https://lab.gb0.dev',
     base: '/',
@@ -69,7 +68,7 @@ export default defineConfig({
         }
     },
 
-    integrations: [sitemap(), expressiveCode(), mdx(), partytown(), db()],
+    integrations: [sitemap(), expressiveCode(), mdx(), partytown()],
 
     adapter: node({
       mode: 'standalone'

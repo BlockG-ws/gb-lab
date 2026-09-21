@@ -10,13 +10,10 @@
     "preview": "astro preview",
     "astro": "astro",
     "sync:local": "elog sync -e .elog.env",
-    "sync": "elog sync",
-    "db:migrate": "astro db push",
-    "activitypub:init": "astro db push"
+    "sync": "elog sync"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.2",
-    "@astrojs/db": "^0.21.3",
     "@astrojs/markdown-satteri": "^0.4.1",
     "@astrojs/mdx": "^8.0.1",
     "@astrojs/node": "^11.1.6",
@@ -24,7 +21,6 @@
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "@elog/cli": "0.15.0-beta.1",
-    "@fedify/fedify": "^1.10.8",
     "artalk": "^2.9.1",
     "astro": "^7.3.3",
     "astro-expressive-code": "^0.44.2",
