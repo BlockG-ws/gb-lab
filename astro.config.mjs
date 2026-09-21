@@ -31,6 +31,13 @@ export default defineConfig({
         format: 'directory'
     },
 
+    fonts: [{
+        provider: fontProviders.fontsource(),
+        name: "JetBrains Mono",
+        cssVariable: "--font-mono",
+        weights: ["300 400 700"],
+    }],
+
     markdown: {
         shikiConfig: {
             theme: 'nord',
