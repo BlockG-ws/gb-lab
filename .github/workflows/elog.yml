@@ -26,8 +26,18 @@ jobs:
         with:
           token: ${{ secrets.ELOG_GITHUB_TOKEN }}
 
-      - name: 安装 bun
-        uses: oven-sh/setup-bun@v2
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: |
+            - recursive: false
+              args: [--frozen-lockfile, --strict-peer-dependencies, --prod]
+
+      - name: 安装node环境
+        uses: actions/setup-node@master
+        with:
+          node-version: "22.x"
 
       - run: bun --bun install
 
@@ -51,8 +61,10 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: |
+          # 对于 elog 无法运行的临时方案
+          sed --in-place=.orig s/\"type\"\:\ \"module\"/\"type\"\:\ \"commonjs\"/ package.json
           # 对应package.json中的script.sync
-          bun --bun run sync
+          pnpm run sync
 
       - name: 推送到仓库
         uses: EndBug/add-and-commit@v9
