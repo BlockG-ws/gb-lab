@@ -4,10 +4,6 @@ import sitemap from '@astrojs/sitemap';
 
 import mdx from '@astrojs/mdx';
 
-
-//import remarkMath from "remark-math";
-//import rehypeKatex from "rehype-katex";
-
 import partytown from '@astrojs/partytown';
 
 import node from '@astrojs/node';
@@ -21,7 +17,6 @@ import satteriKatex from "satteri-katex";
 
 import expressiveCode from 'astro-expressive-code';
 import db from '@astrojs/db';
-import remarkSpoiler from "./src/plugins/remark/spoiler.ts";
 export default defineConfig({
     site: 'https://lab.gb0.dev',
     base: '/',
