@@ -4,15 +4,20 @@ import sitemap from '@astrojs/sitemap';
 
 import mdx from '@astrojs/mdx';
 
-import {remarkWordCount} from './src/plugins/remark/wordcount.js';
 
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
+//import remarkMath from "remark-math";
+//import rehypeKatex from "rehype-katex";
 
 import partytown from '@astrojs/partytown';
-import {remarkModifiedTime} from "./src/plugins/remark/modified-time.mjs";
 
 import node from '@astrojs/node';
+import {satteri} from "@astrojs/markdown-satteri";
+
+import {mdastReadingTimePlugin} from '@/plugins/satteri/wordcount.js';
+import {mdastModifiedTimePlugin} from "@/plugins/satteri/modified-time.mjs";
+import {mdastSpoilerPlugin} from "@/plugins/satteri/spoiler.ts";
+import satteriKatex from "satteri-katex";
+
 
 import expressiveCode from 'astro-expressive-code';
 import db from '@astrojs/db';
@@ -33,8 +38,14 @@ export default defineConfig({
     },
 
     markdown: {
-        remarkPlugins: [remarkMath, remarkSpoiler,remarkWordCount,remarkModifiedTime],
-        rehypePlugins: [rehypeKatex]
+        shikiConfig: {
+            theme: 'nord',
+            wrap: true
+        },
+        processor: satteri({
+            features: { math: true, rawHtml: true },
+            mdastPlugins: [satteriKatex(),mdastReadingTimePlugin,mdastModifiedTimePlugin,mdastSpoilerPlugin],
+        }),
     },
 
     fonts: [{
@@ -67,8 +78,5 @@ export default defineConfig({
 
     adapter: node({
       mode: 'standalone'
-    }),
-    //experimental: {
-    //    rustCompiler: true
-    //}
+    })
 });
