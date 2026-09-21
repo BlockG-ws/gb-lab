@@ -49,13 +49,5 @@
     "@waline/client": "^3.13.0",
     "cssnano": "^7.1.9",
     "tsx": "^4.21.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "keytar",
-      "sharp",
-      "workerd"
-    ]
   }
 }
